@@ -275,10 +275,10 @@ else
 	$admin = @$_GET['admin'];
 
 	
-	echo $pagine[$page] ;
-	echo $pagine_2[$studente] ;
-	echo $pagine_3[$docente] ;
-	echo $pagine_4[$admin] ;
+	echo @$pagine[$page] ;
+	echo @$pagine_2[$studente] ;
+	echo @$pagine_3[$docente] ;
+	echo @$pagine_4[$admin] ;
 	
 	}
 ?>
