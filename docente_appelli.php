@@ -1,16 +1,16 @@
 <?php
 session_start();
-$_SESSION['id_edit'] = '';
-$_SESSION['role_edit'] = '';
-$_SESSION['nome_edit']= '';
-$_SESSION['cognome_edit'] = '';
-$_SESSION['via_edit'] = '';
-$_SESSION['civico_edit'] = '';
-$_SESSION['citta_edit'] = '';
-$_SESSION['provincia_edit'] = '';
-$_SESSION['cap_edit'] = '';
-$_SESSION['email_edit'] = '';
-$_SESSION['ricevimento_edit'] = '';
+@$_SESSION['id_edit'] = '';
+@$_SESSION['role_edit'] = '';
+@$_SESSION['nome_edit']= '';
+@$_SESSION['cognome_edit'] = '';
+@$_SESSION['via_edit'] = '';
+@$_SESSION['civico_edit'] = '';
+@$_SESSION['citta_edit'] = '';
+@$_SESSION['provincia_edit'] = '';
+@$_SESSION['cap_edit'] = '';
+@$_SESSION['email_edit'] = '';
+@$_SESSION['ricevimento_edit'] = '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
@@ -38,15 +38,15 @@ if ( (isset($_GET['add']) && ($_GET['add'] == "appello")) || (isset($_GET['show'
 <?php include 'include/lside.htm'; ?>
 <? 
 //controllo docente
-if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'docente') {
+if (@$_SESSION['login'] == "Yes" && @$_SESSION['role'] == 'docente') {
 ?>
 <page class="content">
   <section>
         <h2 class="icona" id="esame-m">Appelli</h2>
     <p>&nbsp;</p>
-    <p><strong>Nome: </strong> <? echo $_SESSION['nome'] ?></p>
-    <p><strong>Cognome: </strong> <? echo $_SESSION['cognome'] ?></p>
-    <p><strong>Insegnamento: </strong> <? echo $_SESSION['insegnamento_nome'] ?></p>
+    <p><strong>Nome: </strong> <? echo @$_SESSION['nome'] ?></p>
+    <p><strong>Cognome: </strong> <? echo @$_SESSION['cognome'] ?></p>
+    <p><strong>Insegnamento: </strong> <? echo @$_SESSION['insegnamento_nome'] ?></p>
     <hr width="100%" size="2" color="1c345a">
     <h3>Crea nuovo appello</h3>
     <form method="post" action="?add=appello">
@@ -66,13 +66,13 @@ if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'docente') {
     <?php
 // attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['add'] == "appello" ) {
+if ( @$_GET['add'] == "appello" ) {
 
 // recuperiamo i dati inviati con il form
 
 $data = $_POST['data'];
 $posti = $_POST['posti'];
-$insegnamento = $_SESSION['insegnamento_id'];
+$insegnamento = @$_SESSION['insegnamento_id'];
 
 if ( $data == TRUE && $posti == TRUE ){
 
@@ -157,10 +157,10 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 			$i=0;
             while ($i < $num) {
 			
-			if ( $_GET['show'] == (mysql_result($appelli,$i,'id')) ) {
+			if ( @$_GET['show'] == (mysql_result($appelli,$i,'id')) ) {
 				
-				$id_appello = $_GET['show'];
-				$_SESSION['id_appello'] = $id_appello;
+				$id_appello = @$_GET['show'];
+				@$_SESSION['id_appello'] = $id_appello;
 				
 				}
 				
@@ -171,7 +171,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 // attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['show'] == $id_appello ) {
+if ( @$_GET['show'] == $id_appello ) {
 	
 	$get_url = $_SERVER['REQUEST_URI'];
 	
@@ -205,9 +205,9 @@ if ( $_GET['show'] == $id_appello ) {
 <?php
 // attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['edit'] == "appello" ) {
+if ( @$_GET['edit'] == "appello" ) {
 
-$id_appello = $_SESSION['id_appello'];		
+$id_appello = @$_SESSION['id_appello'];		
 // recuperiamo i dati inviati con il form
 $data = $_POST['data'];
 $posti = $_POST['posti'];
@@ -216,7 +216,7 @@ if ( $insegnamento == TRUE && $data == TRUE && $posti == TRUE){
 
 mysql_query("UPDATE appelli SET data = '$data', posti = '$posti' WHERE id = '$id_appello'") OR DIE(mysql_error());
 
-$_SESSION['id_appello'] = '';
+@$_SESSION['id_appello'] = '';
 
 echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti modifica effettuata con successo.</b><p>&nbsp;</p>";
 
@@ -225,9 +225,9 @@ echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertica
 echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;' /><b>Tutti i campi sono obbligatori.</b><p>&nbsp;</p>";
 
 }
-} elseif ( $_GET['delete'] == $id_appello ) {
+} elseif ( @$_GET['delete'] == $id_appello ) {
 	
-$id_appello = $_GET['delete'];
+$id_appello = @$_GET['delete'];
 
 mysql_query("DELETE FROM appelli WHERE id = '$id_appello'") OR DIE(mysql_error());
 
@@ -250,7 +250,7 @@ echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertica
     <p>Per l'inserimento e la modifica è necessario specificare solo la data ed i posti disponibili.</p>
   </rside>
 <?
-} elseif ($_SESSION['login'] != "Yes") {
+} elseif (@$_SESSION['login'] != "Yes") {
 
 	
 echo "<page class='content'><section><center><img src='files/img/no.png' width='32' height='32' alt='accesso negato'style='vertical-align:middle;' /><b>Accesso non autorizzato.</b><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a><p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='registrati' value='registrati'/></a></center></section></page>
