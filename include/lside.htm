@@ -9,7 +9,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] != "studente" && $_SESSION['r
       <p><a href="index.php?page=registrazione">Registrazione</a></p>
 <?php
 }
-elseif ( (isset($_SESSION['role']) && ($_SESSION['login'] == "Yes") && ($_SESSION['role'] == "studente")) {
+elseif ( (isset($_SESSION['role']) && ($_SESSION['login']) && ($_SESSION['login'] == "Yes") && ($_SESSION['role'] == "studente")) {
 ?>
     <h2>Area riservata</h2>
       <p>Ciao, <? echo @$_SESSION['nome'] ?>  <a href="authentication.php?check=logout"><img src="files/img/logout.png" width="16" height="16" alt="logout" style="vertical-align:middle;"></a></p>
