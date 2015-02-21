@@ -1,0 +1,347 @@
+﻿@charset "utf-8";
+/* CSS Document */
+<!--
+body {
+	font: 12px Verdana, Arial, Helvetica, sans-serif;
+	background-color: #e4e4e4;
+	margin: 25px 0 25px 0;
+	padding:inherit;
+	color: #000
+}
+
+ul, ol, dl { 
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3 {
+	margin-top: 0;
+	padding-right: 15px;
+	padding-left: 15px;
+	color: #1c345a;
+}
+h4, h5, h6, p {
+	margin-top: 0;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+a img { /*  Questo selettore rimuove il bordo blu predefinito visualizzato in alcuni browser intorno a un'immagine quando è circondata da un collegamento.   */
+	border: none;
+}
+
+a:link {
+	color: #42413C;
+	text-decoration: underline;
+}
+a:visited {
+	color: #6E6C64;
+	text-decoration: underline;
+}
+a:hover, a:active, a:focus {
+	text-decoration: none;
+}
+
+.container {
+	width: 840px;
+	background-color: #FFFFFF;
+	margin: 0 auto; /*  Il valore automatico sui lati, abbinato alla larghezza, produce un layout centrato.  */
+	box-shadow: 0 0 10px rgba(0,0,0,.2);
+	margin-left: 250px;
+	margin-right: 250px;
+}
+
+.container a:link {
+	color: #9e1616;
+	text-decoration: underline;
+}
+.container a:visited {
+	color: #1c345a;
+	text-decoration: underline;
+}
+.container a:hover, .container a:active, .container a:focus {
+	text-decoration: underline;
+	font-weight: bold;
+}
+/* ~~ All'intestazione non viene assegnata una larghezza. Estenderà l'intera larghezza del layout.  ~~ */
+.header{
+    width: 880px;
+    height: 125px;
+	background: url(img/logo.png);
+	background-color: #1c345a;
+	background-repeat: no-repeat;
+	background-position:left;
+    border-bottom-style: solid;
+	border-bottom-width: 10px;
+    border-bottom-color: #9e1616;
+	box-sizing: border-box;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#005fb8', endColorstr='#1c345a',GradientType=0 );
+    text-align:right;
+    margin-left: -20px;
+    position: center;
+}
+.header::after, .header::before{
+    content: "";
+    position: absolute;
+    top: 130px;
+    left: 210px;
+    border-color: transparent #005fb8 transparent transparent;
+    border-style: solid;
+    border-width: 20px;
+    z-index: -1;
+    width: 0;
+    height: 0;
+}
+.header::before{
+    left: 1090px;
+	position: absolute;
+    border-color: transparent transparent transparent #005fb8;
+    border-style: solid;
+    border-width: 20px;
+    z-index: -1;
+}
+
+lside {
+	background-color:#CCC;
+	float: left;
+	width: 170px;
+	min-height: 365px;
+	padding: 10px 15px 0 5px;
+	text-align:left;
+	color: #1c345a;
+}
+.content {
+	padding: 10px 0;
+	width: 455px;
+	float: left;
+	position: static;
+	margin-left: 2px;
+}
+rside {
+	background-color:#CCC;
+	float: right;
+	width: 170px;
+	min-height: 365px;
+	padding: 10px 5px 0 15px;
+	text-align:left;
+	color: #1c345a;
+}
+
+.icona{
+	background-repeat: no-repeat;
+	height: 32px;
+    vertical-align: middle;
+    padding-top: 3px;
+	padding-left: 50px;
+}
+
+.box_link li{
+        display: block;
+        width: 400px;
+        height: 130px;
+        margin:auto;
+        margin-top: 15px;
+        border: 1px solid #1c345a;
+        position: relative;
+}
+
+.box_link li a{
+        display: block;
+        position: absolute;
+        /* per allineare il testo a meta' di un block il trucco e' usare
+           una line-height della stessa altezza del blocco */
+        line-height: 130px;
+        vertical-align: middle;
+        padding-left: 150px;
+        font-size: 1.2em;
+}
+
+/* stile icone link e pagina */
+#areap{
+	background: url(img/home-mini.png);
+	background-repeat: no-repeat;
+}
+#anagrafica{
+	background: url(img/anagrafica.png);
+	background-repeat: no-repeat;
+}
+#anagrafica-m{
+	background: url(img/anagrafica-mini.png);
+	background-repeat: no-repeat;
+}
+#esame{
+	background: url(img/esame.png);
+	background-repeat: no-repeat;
+
+}
+#esame-m{
+	background: url(img/esame-mini.png);
+	background-repeat: no-repeat;
+}
+#libretto{
+	background: url(img/libretto.png);
+	background-repeat: no-repeat;
+}
+#libretto-m{
+	background: url(img/libretto-mini.png);
+	background-repeat: no-repeat;
+}
+#cerca{
+	background: url(img/cerca.png);
+	background-repeat: no-repeat;
+}
+#cerca-m{
+	background: url(img/cerca-mini.png);
+	background-repeat: no-repeat;
+}
+#quadro{
+	background: url(img/quadro.png);
+	background-repeat: no-repeat;
+}
+#quadro-m{
+	background: url(img/quadro-mini.png);
+	background-repeat: no-repeat;	
+}
+
+#edit{
+	background: url(img/edit.png);
+	background-repeat: no-repeat;
+}
+
+#delete{
+	background: url(img/delete.png);
+	background-repeat: no-repeat;
+}
+
+#button {
+	background-color: #1c345a; /* colore di sfondo    */
+	color: #FFF;               /* colore del testo    */
+	font-weight: bold;
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px; /* firefox */
+	-webkit-border-radius: 10px 10px 10px 10px; /* safari, chrome */
+	height: 25px;              /* altezza             */
+	width: auto;               /* larghezza           */
+}
+
+#button:hover {
+	text-decoration: underline;
+}	
+
+/* stile  tabelle */
+table {
+    border: 1px solid #1c345a;
+    border-collapse: collapse;
+    margin-top:10px;
+	width:100%;
+    line-height: 1.2em;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+
+th, td {
+    border: 1px solid #1c345a;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th {
+    background-color: #1c345a;
+    color: white;
+    font-weight: bold;
+}
+
+tr.head {
+    background-color: #1c345a;
+    color: white;
+    font-weight: bold;
+}
+tr.field {
+    background-color: #e8ebee;
+    color: black;
+}
+
+.content ul, .content ol {
+	padding: 0 15px 15px 40px;
+}
+
+/* ~~ Gli stili dell'elenco di navigazione (rimovibili se scegliete di utilizzare un menu flyout reimpostato come Spry) ~~ */
+ul.nav {
+	list-style: none; /*  Rimuove l'indicatore di elenco */
+	border-top: 1px solid #666; /*  Crea il bordo superiore dei collegamenti; tutti gli altri vengono posizionati utilizzando un bordo inferiore sul LI  */
+	margin-bottom: 15px; /*  Crea lo spazio tra gli elementi di navigazione nel contenuto sottostante  */
+}
+ul.nav li {
+	border-bottom: 1px solid #666; /*  Crea la separazione tra i pulsanti  */
+}
+ul.nav a, ul.nav a:visited { /*  Raggruppando questi selettori si fa in modo che i collegamenti mantengano l'aspetto di pulsante anche dopo che sono stati visitati  */
+	padding: 5px 5px 5px 15px;
+	display: block; /*  Specifica le proprietà block del collegamento facendo sì che riempia l'intero LI che lo contiene. Fa in modo che l'intera area risponda a un clic del mouse.  */
+	width: 160px;  /*Questa larghezza rende cliccabile l'intero pulsante in IE6. Se non avete bisogno di supportare IE6, può essere rimossa. Calcolate la larghezza corretta sottraendo la spaziatura di questo collegamento dalla larghezza del contenitore della barra laterale.  */
+	text-decoration: none;
+	background-color: #C6D580;
+}
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /*  Cambia il colore dello sfondo e del testo per la navigazione tramite mouse e tastiera  */
+	background-color: #ADB96E;
+	color: #FFF;
+}
+
+select {
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#888;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+	width: 175px;
+}
+/* ~~ Il piè di pagina ~~ */
+footer {
+	padding: 10px 0;
+	background-color: #1c345a;
+	background-repeat: no-repeat;
+	position: 0;
+	width:840px;
+	height: 25px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align:center;
+	box-shadow: 0 0 10px rgba(0,0,0,.2);
+	color: #FFF;
+	border-top-style: solid;
+	border-top-width: 10px;
+    border-top-color: #9e1616;
+	clear:both;
+}
+
+/* ~~ Classi float/clear varie ~~ */
+.fltrt {  /* questa classe può essere utilizzata per applicare un float a un elemento a destra nella pagina. L'elemento con float deve precedere l'elemento al quale deve essere affiancato sulla pagina. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* questa classe può essere utilizzata per applicare un float a un elemento a sinistra nella pagina. L'elemento con float deve precedere l'elemento al quale deve essere affiancato sulla pagina. */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* questa classe può essere inserita in un <br /> o in un blocco vuoto come elemento finale subito dopo l'ultimo blocco con float (all'interno del .container) se il footer viene rimosso o estratto dal .container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+/*Supporto HTML 5 - Imposta nuovi tag HTML 5 per display:block in modo da indicare ai browser come eseguire il rendering corretto dei tag. */
+header, section, footer, aside, page, figure {
+	display: block;
+}
+-->

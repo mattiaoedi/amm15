@@ -1,0 +1,14 @@
+/* ADMIN */
+
+user: gi.fenu1
+pw: 123
+
+/* DOCENTE*/
+
+user: da.spano2
+pw: 123
+
+/*STUDENTE*/
+
+user: ma.sarritzu1
+pw: 123
