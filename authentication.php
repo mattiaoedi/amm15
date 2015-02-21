@@ -230,11 +230,11 @@ mail ($mail, "Registrazione OK", "Complimenti registrazione presso il portale am
 
 // messaggi da far visualizzare all'utente finale
 
-echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti registrazione effettuata con successo.</b><br />Il tuo nome utente per l'accesso è <b>$username</b><p>&nbsp;</p><p><a href='index.php'><input id='button' type='submit' alt='home' value='home'/></a></p><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a></p>";
+echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti registrazione effettuata con successo.</b><br />Il tuo nome utente per l'accesso è <b>$username</b><p>&nbsp;</p><a href='index.php'><input id='button' type='submit' alt='home' value='home'/></a><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a>";
 
 } else {
 
-echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;' /><b>Le password non corrispondono</b><p>&nbsp;</p><p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='riprova' value='riprova'/></a></p>";
+echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;' /><b>Le password non corrispondono</b><p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='riprova' value='riprova'/></a>";
 
 }
 
@@ -246,13 +246,13 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 
 } else {
 
-echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;' /><b>Indirizzo email già utilizzato.</b><p>&nbsp;</p><p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='riprova' value='riprova'/></a></p>";
+echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;' /><b>Indirizzo email già utilizzato.</b><p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='riprova' value='riprova'/></a>";
 
 }
 
 } else {
 
-echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;' /><b>Tutti i campi sono obbligatori.<p>&nbsp;</p><p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='riprova' value='riprova'/></a></p>";
+echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;' /><b>Tutti i campi sono obbligatori.<p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='riprova' value='riprova'/></a>";
 
 }
 
