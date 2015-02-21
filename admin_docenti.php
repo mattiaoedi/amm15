@@ -1,11 +1,11 @@
 <?php
 session_start();
-$_SESSION['studente'] = '';
-$_SESSION['id_appello'] = '';
-$_SESSION['id_esame'] = '';
-$_SESSION['id_dipartimento'] = '';
-$_SESSION['id_corso'] = '';
-$_SESSION['id_insegnamento'] = '';
+@$_SESSION['studente'] = '';
+@$_SESSION['id_appello'] = '';
+@$_SESSION['id_esame'] = '';
+@$_SESSION['id_dipartimento'] = '';
+@$_SESSION['id_corso'] = '';
+@$_SESSION['id_insegnamento'] = '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
@@ -33,14 +33,14 @@ if ( (isset($_GET['show']) && ($_GET['show'] == "docente")) ||  (isset($_GET['ed
 <?php include 'include/lside.htm'; ?>
 <? 
 //controllo studente
-if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'admin') {
+if (@$_SESSION['login'] == "Yes" && @$_SESSION['role'] == 'admin') {
 ?>
   <page class="content">
     <section>
      <h2 class="icona" id="anagrafica-m">Docenti</h2>
       <p>&nbsp;</p>
-      <p><strong>Nome: </strong> <? echo $_SESSION['nome'] ?></p>
-      <p><strong>Cognome: </strong> <? echo $_SESSION['cognome'] ?></p>
+      <p><strong>Nome: </strong> <? echo @$_SESSION['nome'] ?></p>
+      <p><strong>Cognome: </strong> <? echo @$_SESSION['cognome'] ?></p>
       <p><strong>Gestione come amministratore</strong></p>
           <hr width="100%" size="2" color="1c345a">
         <h3>Elenco docenti</h3>
@@ -76,42 +76,42 @@ if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'admin') {
             <hr width="100%" size="2" color="1c345a">
 <?php
 //controllo per riaprire l'anagrafica dopo che premo su un bottone modifica
-if( ($_POST['docente'] == '') && ($_SESSION['id_docente'] != '') ) {
+if( ($_POST['docente'] == '') && (@$_SESSION['id_docente'] != '') ) {
 	
-$id_docente = $_SESSION['id_docente'];
-$_GET['show'] = "docente";
+$id_docente = @$_SESSION['id_docente'];
+@$_GET['show'] = "docente";
 
 }
 
-if ( $_GET['show'] == "docente" ) {
+if ( @$_GET['show'] == "docente" ) {
 	
 	$id_docente = $_POST["docente"];
-	$_SESSION['id_docente'] = $id_docente;
+	@$_SESSION['id_docente'] = $id_docente;
 	$risultati = mysql_query("SELECT * FROM docenti WHERE id = '$id_docente' ORDER BY cognome");
 	$docente = mysql_fetch_array($risultati);
-		$_SESSION['id_edit'] = $docente['id'];
-		$_SESSION['role_edit'] = $docente['role'];
-		$_SESSION['nome_edit'] = $docente['nome'];
-		$_SESSION['cognome_edit'] = $docente['cognome'];
-		$_SESSION['via_edit'] = $docente['via'];
-		$_SESSION['civico_edit'] = $docente['civico'];
-		$_SESSION['citta_edit'] = $docente['citta'];
-		$_SESSION['provincia_edit'] = $docente['provincia'];
-		$_SESSION['cap_edit'] = $docente['cap'];
-		$_SESSION['email_edit'] = $docente['email'];
-		$_SESSION['ricevimento_edit'] = $docente['ricevimento'];
+		@$_SESSION['id_edit'] = $docente['id'];
+		@$_SESSION['role_edit'] = $docente['role'];
+		@$_SESSION['nome_edit'] = $docente['nome'];
+		@$_SESSION['cognome_edit'] = $docente['cognome'];
+		@$_SESSION['via_edit'] = $docente['via'];
+		@$_SESSION['civico_edit'] = $docente['civico'];
+		@$_SESSION['citta_edit'] = $docente['citta'];
+		@$_SESSION['provincia_edit'] = $docente['provincia'];
+		@$_SESSION['cap_edit'] = $docente['cap'];
+		@$_SESSION['email_edit'] = $docente['email'];
+		@$_SESSION['ricevimento_edit'] = $docente['ricevimento'];
 
 ?>	
                   <h3>Dati</h3>
             <form method="post" action="<? $url ?>?edit=dati">
             <p><b>Matricola</b><br />
-            <input name="email" type="text" value="<? echo $_SESSION['id_edit'] ?>">
+            <input name="email" type="text" value="<? echo @$_SESSION['id_edit'] ?>">
             <br></p>            
             <p><b>Nome</b><br />
-            <input name="email" type="text" value="<? echo $_SESSION['nome_edit'] ?>">
+            <input name="email" type="text" value="<? echo @$_SESSION['nome_edit'] ?>">
             <br></p>
             <p><b>Cognome</b><br />
-            <input name="ricevimento" type="text" value="<? echo $_SESSION['cognome_edit'] ?>">
+            <input name="ricevimento" type="text" value="<? echo @$_SESSION['cognome_edit'] ?>">
             <br></p>
             <p><b>Ruolo</b><br />
             <select name="ruolo">
@@ -211,7 +211,7 @@ if ( $_GET['show'] == "docente" ) {
 <?php
 // attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['edit'] == "dati" ) {
+if ( @$_GET['edit'] == "dati" ) {
 
 // recuperiamo i dati inviati con il form
 $matricola = $_POST['matricola'];
@@ -231,14 +231,14 @@ $corso = mysql_real_escape_string($corso);
 mysql_query("UPDATE docenti SET id = '$matricola', role = '$role', nome = '$nome', cognome = '$cognome', dipartimento ='$dipartimento', corso = '$corso' WHERE id = '$id_docente'") OR DIE(mysql_error());
 
 
-if ( $id_docente == $_SESSION['id'] ) {
+if ( $id_docente == @$_SESSION['id'] ) {
 	
-$_SESSION['matricola'] = $matricola;
-$_SESSION['nome'] = $nome;
-$_SESSION['cognome'] = $cognome;
-$_SESSION['ruolo'] = $ruolo;
-$_SESSION['dipartimento'] = $dipartimento;
-$_SESSION['corso'] = $corso;
+@$_SESSION['matricola'] = $matricola;
+@$_SESSION['nome'] = $nome;
+@$_SESSION['cognome'] = $cognome;
+@$_SESSION['ruolo'] = $ruolo;
+@$_SESSION['dipartimento'] = $dipartimento;
+@$_SESSION['corso'] = $corso;
 
 }
 
@@ -251,19 +251,19 @@ echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertica
         <h3>Indirizzo</h3>
             <form method="post" action="<? $url ?>?edit=indirizzo">
             <p><b>Via o piazza</b><br />
-            <input name="via" type="text" value="<? echo $_SESSION['via_edit'] ?>">
+            <input name="via" type="text" value="<? echo @$_SESSION['via_edit'] ?>">
             <br></p>
             <p><b>Numero civico</b><br />
-            <input name="civico" type="number" value="<? echo $_SESSION['civico_edit'] ?>">
+            <input name="civico" type="number" value="<? echo @$_SESSION['civico_edit'] ?>">
             <br></p>
             <p><b>Città</b><br />
-            <input name="citta" type="text" value="<? echo $_SESSION['citta_edit'] ?>">
+            <input name="citta" type="text" value="<? echo @$_SESSION['citta_edit'] ?>">
             <br></p>
             <p><b>Provincia</b><br />
-            <input name="provincia" type="text" value="<? echo $_SESSION['provincia_edit'] ?>">
+            <input name="provincia" type="text" value="<? echo @$_SESSION['provincia_edit'] ?>">
             <br></p>
             <p><b>Cap</b><br />
-            <input name="cap" type="number" value="<? echo $_SESSION['cap_edit'] ?>">
+            <input name="cap" type="number" value="<? echo @$_SESSION['cap_edit'] ?>">
             <br></p>
             <p><input id="button" type="submit" alt="modifca" value="modifca"/>
             <br /></p>
@@ -271,7 +271,7 @@ echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertica
               <?php
 // attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['edit'] == "indirizzo" ) {
+if ( @$_GET['edit'] == "indirizzo" ) {
 
 // recuperiamo i dati inviati con il form
 
@@ -289,13 +289,13 @@ $cap = mysql_real_escape_string($cap);
 
 mysql_query("UPDATE docenti SET via = '$via', civico = '$civico', citta = '$citta', provincia = '$provincia', cap = '$cap' WHERE id = '$id_docenti'") OR DIE(mysql_error());
 
-if ( $id_docente == $_SESSION['id'] ) {
+if ( $id_docente == @$_SESSION['id'] ) {
 	
-$_SESSION['via'] = $via;
-$_SESSION['civico'] = $civico;
-$_SESSION['citta'] = $citta;
-$_SESSION['provincia'] = $provincia;
-$_SESSION['cap'] = $cap;
+@$_SESSION['via'] = $via;
+@$_SESSION['civico'] = $civico;
+@$_SESSION['citta'] = $citta;
+@$_SESSION['provincia'] = $provincia;
+@$_SESSION['cap'] = $cap;
 
 }
 
@@ -308,10 +308,10 @@ echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertica
             <h3>Contatti</h3>
             <form method="post" action="<? $url ?>?edit=contatti">
             <p><b>Email</b><br />
-            <input name="email" type="text" value="<? echo $_SESSION['email_edit'] ?>">
+            <input name="email" type="text" value="<? echo @$_SESSION['email_edit'] ?>">
             <br></p>
             <p><b>Ricevimento</b><br />
-            <input name="ricevimento" type="text" value="<? echo $_SESSION['ricevimento_edit'] ?>">
+            <input name="ricevimento" type="text" value="<? echo @$_SESSION['ricevimento_edit'] ?>">
             <br></p>
             <p><input id="button" type="submit" alt="modifca" value="modifca"/>
             <br /></p>
@@ -319,7 +319,7 @@ echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertica
 <?php
 // attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['edit'] == "contatti" ) {
+if ( @$_GET['edit'] == "contatti" ) {
 
 // recuperiamo i dati inviati con il form
 
@@ -333,9 +333,9 @@ if ( $num == 0 ) {
 
 mysql_query("UPDATE docenti SET email = '$email' WHERE id = '$id_docenti'") OR DIE(mysql_error());
 
-if ( $id_docente == $_SESSION['id'] ) {
+if ( $id_docente == @$_SESSION['id'] ) {
 
-$_SESSION['email'] = $email;
+@$_SESSION['email'] = $email;
 
 }
 
@@ -364,7 +364,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 // attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['edit'] == "password" ) {
+if ( @$_GET['edit'] == "password" ) {
 
 // recuperiamo i dati inviati con il form
 
@@ -408,7 +408,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
     </ul>
   </rside>
 <?
-} elseif ($_SESSION['login'] != "Yes") {
+} elseif (@$_SESSION['login'] != "Yes") {
 
 	
 echo "<page class='content'><section><center><img src='files/img/no.png' width='32' height='32' alt='accesso negato'style='vertical-align:middle;' /><b>Accesso non autorizzato.</b><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a><p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='registrati' value='registrati'/></a></center></section></page>  <br>
