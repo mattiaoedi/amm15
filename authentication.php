@@ -14,7 +14,7 @@ session_start();
 // includiamo il file di connessione al database
 include ('files/config.php');
 
-if ( (isset($_GET['check']) && ($_GET['check'] == "login")) || (isset($_GET['check']) && ($_GET['check'] == "registrazione")) || (isset($_GET['check']) && ($_GET['check'] == "logout"))) {
+if ( (isset($_GET['check']) && ($_GET['check'] == "login")) || (isset($_GET['check']) && ($_GET['check'] == "registazione")) || (isset($_GET['check']) && ($_GET['check'] == "logout"))) {
 	header( "refresh:1;url={$_SERVER['PHP_SELF']}" );
 	}	
 ?>
