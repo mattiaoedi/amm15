@@ -1,16 +1,16 @@
-﻿<?php
+<?php
 session_start();
-$_SESSION['id_edit'] = '';
-$_SESSION['role_edit'] = '';
-$_SESSION['nome_edit']= '';
-$_SESSION['cognome_edit'] = '';
-$_SESSION['via_edit'] = '';
-$_SESSION['civico_edit'] = '';
-$_SESSION['citta_edit'] = '';
-$_SESSION['provincia_edit'] = '';
-$_SESSION['cap_edit'] = '';
-$_SESSION['email_edit'] = '';
-$_SESSION['ricevimento_edit'] = '';
+@$_SESSION['id_edit'] = '';
+@$_SESSION['role_edit'] = '';
+@$_SESSION['nome_edit']= '';
+@$_SESSION['cognome_edit'] = '';
+@$_SESSION['via_edit'] = '';
+@$_SESSION['civico_edit'] = '';
+@$_SESSION['citta_edit'] = '';
+@$_SESSION['provincia_edit'] = '';
+@$_SESSION['cap_edit'] = '';
+@$_SESSION['email_edit'] = '';
+@$_SESSION['ricevimento_edit'] = '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
@@ -34,7 +34,7 @@ include ('files/config.php');
 </div>
 <?php include 'include/lside.htm'; ?>
 <?php 
-	  if(!$_GET)
+	  if(!@$_GET)
 {
 ?>
 <page class="content">
@@ -269,10 +269,10 @@ else
 	'elenco'=> '',
 	'dipartimenti'=> '');
 
-	$page = $_GET['page'];	
-	$studente = $_GET['studente'];
-	$docente = $_GET['docente'];
-	$admin = $_GET['admin'];
+	$page = @$_GET['page'];	
+	$studente = @$_GET['studente'];
+	$docente = @$_GET['docente'];
+	$admin = @$_GET['admin'];
 
 	
 	echo $pagine[$page] ;
@@ -284,7 +284,7 @@ else
 ?>
 <?php
 //page registrazione gestita in modo di verso perchè il php non è ricorsivo e nella pagina uso altri echo
-if ($_GET['page'] == "registrazione" ) {
+if (@$_GET['page'] == "registrazione" ) {
 ?>
 <page class="content">
 	<section>
