@@ -14,7 +14,7 @@ session_start();
 // includiamo il file di connessione al database
 include ('files/config.php');
 
-if ( (isset($_GET['check']) && ($_GET['check'] == "login")) || (isset($_GET['check']) && ($_GET['check'] == "registrazione")) || (isset($_GET['check']) && ($_GET['check'] == "logout"))) {
+if ( (isset($_GET['check']) && ($_GET['check'] == "login")) || (isset($_GET['check']) && ($_GET['check'] == "logout"))) {
 	header( "refresh:1;url={$_SERVER['PHP_SELF']}" );
 	}	
 ?>
@@ -230,7 +230,7 @@ mail ($mail, "Registrazione OK", "Complimenti registrazione presso il portale am
 
 // messaggi da far visualizzare all'utente finale
 
-echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti registrazione effettuata con successo.</b><br />Il tuo nome utente per l'accesso è <b>$username</b>";
+echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti registrazione effettuata con successo.</b><br />Il tuo nome utente per l'accesso è <b>$username</b><p>&nbsp;</p><a href='index.php'><input id='button' type='submit' alt='home' value='home'/></a><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a>";
 
 } else {
 
