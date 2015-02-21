@@ -1,16 +1,16 @@
 <?php
 session_start();
-$_SESSION['id_edit'] = '';
-$_SESSION['role_edit'] = '';
-$_SESSION['nome_edit']= '';
-$_SESSION['cognome_edit'] = '';
-$_SESSION['via_edit'] = '';
-$_SESSION['civico_edit'] = '';
-$_SESSION['citta_edit'] = '';
-$_SESSION['provincia_edit'] = '';
-$_SESSION['cap_edit'] = '';
-$_SESSION['email_edit'] = '';
-$_SESSION['ricevimento_edit'] = '';
+@$_SESSION['id_edit'] = '';
+@$_SESSION['role_edit'] = '';
+@$_SESSION['nome_edit']= '';
+@$_SESSION['cognome_edit'] = '';
+@$_SESSION['via_edit'] = '';
+@$_SESSION['civico_edit'] = '';
+@$_SESSION['citta_edit'] = '';
+@$_SESSION['provincia_edit'] = '';
+@$_SESSION['cap_edit'] = '';
+@$_SESSION['email_edit'] = '';
+@$_SESSION['ricevimento_edit'] = '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
@@ -34,12 +34,12 @@ include ('files/config.php');
 <?php include 'include/lside.htm'; ?>
 <? 
 //controllo studente
-if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'studente' ) {
+if (@$_SESSION['login'] == "Yes" && @$_SESSION['role'] == 'studente' ) {
 ?>
 <page class="content">
     <section>
       <h2 class="icona" id="areap">Area personale</h2>
-      <p>Benvenuto, <? echo $_SESSION['nome'] ?>.</p>
+      <p>Benvenuto, <? echo @$_SESSION['nome'] ?>.</p>
       <p>Benvenuto nella tua area riservata!</p>
 	  <div class="box_link">
       <p><center><li><a href="studente_anagrafica.php" id="anagrafica">Anagrafica</a></li>
@@ -56,7 +56,7 @@ if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'studente' ) {
       <li><strong>Iscrizione</strong> per iscriversi ad un appello di esame.</li>
   </rside>
   <?
-} elseif ($_SESSION['login'] != "Yes") {
+} elseif (@$_SESSION['login'] != "Yes") {
 
 	
 echo "<page class='content'><section><center><img src='files/img/no.png' width='32' height='32' alt='accesso negato'style='vertical-align:middle;' /><b>Accesso non autorizzato.</b><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a><p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='registrati' value='registrati'/></a></center></section></page>
