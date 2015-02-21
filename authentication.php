@@ -90,9 +90,11 @@ if ( $nums == 1) {
 		
 //ricavo dati diparimento
 	$corso=@$_SESSION['corso'];
-	$risultati = mysql_query("SELECT * FROM corsi WHERE docente = '$corso' ");
+	$risultati = mysql_query("SELECT dipartimento FROM corsi WHERE id = '$corso' ");
 
-	$diparimento = mysql_fetch_array($risultati);
+	$id_diparimento = mysql_fetch_array($risultati);
+$risultati = mysql_query("SELECT id, nome FROM corsi WHERE id = '$id_dipartimento' ");
+$diparimento = mysql_fetch_array($risultati);
 
 		@$_SESSION['diparimento'] = $diparimento['id'];
 		@$_SESSION['nome_diparimento'] = $diparimento['nome'];
