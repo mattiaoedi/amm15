@@ -1,16 +1,16 @@
 <?php
 session_start();
-$_SESSION['id_edit'] = '';
-$_SESSION['role_edit'] = '';
-$_SESSION['nome_edit']= '';
-$_SESSION['cognome_edit'] = '';
-$_SESSION['via_edit'] = '';
-$_SESSION['civico_edit'] = '';
-$_SESSION['citta_edit'] = '';
-$_SESSION['provincia_edit'] = '';
-$_SESSION['cap_edit'] = '';
-$_SESSION['email_edit'] = '';
-$_SESSION['ricevimento_edit'] = '';
+@$_SESSION['id_edit'] = '';
+@$_SESSION['role_edit'] = '';
+@$_SESSION['nome_edit']= '';
+@$_SESSION['cognome_edit'] = '';
+@$_SESSION['via_edit'] = '';
+@$_SESSION['civico_edit'] = '';
+@$_SESSION['citta_edit'] = '';
+@$_SESSION['provincia_edit'] = '';
+@$_SESSION['cap_edit'] = '';
+@$_SESSION['email_edit'] = '';
+@$_SESSION['ricevimento_edit'] = '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
@@ -38,15 +38,15 @@ if ( isset($_GET['sign']) || isset($_GET['delete'])) {
 <?php include 'include/lside.htm'; ?>
 <? 
 //controllo studente
-if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'studente' ) {
+if (@$_SESSION['login'] == "Yes" && @$_SESSION['role'] == 'studente' ) {
 ?>
   <page class="content">
     <section>
      <h2 class="icona" id="esame-m">Iscrizione appello</h2>
       <p>&nbsp;</p>
-      <p><strong>Nome: </strong> <? echo $_SESSION['nome'] ?></p>
-      <p><strong>Cognome: </strong> <? echo $_SESSION['cognome'] ?></p>
-      <p><strong>Matricola: </strong> <? echo $_SESSION['id'] ?></p>
+      <p><strong>Nome: </strong> <? echo @$_SESSION['nome'] ?></p>
+      <p><strong>Cognome: </strong> <? echo @$_SESSION['cognome'] ?></p>
+      <p><strong>Matricola: </strong> <? echo @$_SESSION['id'] ?></p>
           <hr width="100%" size="2" color="1c345a">
         <h3>Appelli disponibili</h3>
 <?
@@ -72,7 +72,7 @@ if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'studente' ) {
         $data=mysql_result($appelli,$i,'data');
         $posti=mysql_result($appelli,$i,'posti');		
 		
-	$id_studente = $_SESSION['id'];
+	$id_studente = @$_SESSION['id'];
 	
 	$risultati = mysql_query("SELECT * FROM iscritti_appello WHERE appello = '$id' AND studente = '$id_studente'");
 	
@@ -123,7 +123,7 @@ if ( isset($_GET['sign'])  ) {
 
 //recuperiamo i dati inviati
 $id_appello = $_GET['sign'];
-$id_studente = $_SESSION['id'];
+$id_studente = @$_SESSION['id'];
 
 mysql_query("UPDATE appelli SET posti = posti-1 WHERE id = '$id_appello'") OR DIE(mysql_error());
 
@@ -143,7 +143,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 //recuperiamo i dati inviati
 
 $id_appello = $_GET['delete'];
-$id_studente = $_SESSION['id'];
+$id_studente = @$_SESSION['id'];
 
 mysql_query("UPDATE appelli SET posti = posti+1 WHERE id = '$id_appello'") OR DIE(mysql_error());
 
@@ -174,7 +174,7 @@ echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertica
     <p>È possibile iscriversi ad un determinato appello cliccando sul link <em>Iscriviti</em> della riga corrispondente.</p>
   </rside>
 <?
-} elseif ($_SESSION['login'] != "Yes") {
+} elseif (@$_SESSION['login'] != "Yes") {
 
 	
 echo "<page class='content'><section><center><img src='files/img/no.png' width='32' height='32' alt='accesso negato'style='vertical-align:middle;' /><b>Accesso non autorizzato.</b><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a><p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='registrati' value='registrati'/></a></center></section></page>  <br>
