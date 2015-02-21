@@ -1,16 +1,16 @@
 <?php
 session_start();
-$_SESSION['id_edit'] = '';
-$_SESSION['role_edit'] = '';
-$_SESSION['nome_edit']= '';
-$_SESSION['cognome_edit'] = '';
-$_SESSION['via_edit'] = '';
-$_SESSION['civico_edit'] = '';
-$_SESSION['citta_edit'] = '';
-$_SESSION['provincia_edit'] = '';
-$_SESSION['cap_edit'] = '';
-$_SESSION['email_edit'] = '';
-$_SESSION['ricevimento_edit'] = '';
+@$_SESSION['id_edit'] = '';
+@$_SESSION['role_edit'] = '';
+@$_SESSION['nome_edit']= '';
+@$_SESSION['cognome_edit'] = '';
+@$_SESSION['via_edit'] = '';
+@$_SESSION['civico_edit'] = '';
+@$_SESSION['citta_edit'] = '';
+@$_SESSION['provincia_edit'] = '';
+@$_SESSION['cap_edit'] = '';
+@$_SESSION['email_edit'] = '';
+@$_SESSION['ricevimento_edit'] = '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
@@ -38,41 +38,41 @@ if ( (isset($_GET['edit']) && ($_GET['edit'] == "indirizzo")) || (isset($_GET['e
 <?php include 'include/lside.htm'; ?>
 <? 
 //controllo studente
-if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'studente' ) {
+if (@$_SESSION['login'] == "Yes" && @$_SESSION['role'] == 'studente' ) {
 ?>
   <page class="content">
     <section>
      <h2 class="icona" id="anagrafica-m">Dati personali</h2>
       <p>&nbsp;</p>
-      <p><strong>Nome: </strong> <? echo $_SESSION['nome'] ?></p>
-      <p><strong>Cognome: </strong> <? echo $_SESSION['cognome'] ?></p>
-      <p><strong>Matricola: </strong> <? echo $_SESSION['id'] ?></p>
+      <p><strong>Nome: </strong> <? echo @$_SESSION['nome'] ?></p>
+      <p><strong>Cognome: </strong> <? echo @$_SESSION['cognome'] ?></p>
+      <p><strong>Matricola: </strong> <? echo @$_SESSION['id'] ?></p>
           <hr width="100%" size="2" color="1c345a">
         <h3>Indirizzo</h3>
             <form method="post" action="<? $url ?>?edit=indirizzo">
             <p><b>Via o piazza</b><br />
-            <input name="via" type="text" value="<? echo $_SESSION['via'] ?>">
+            <input name="via" type="text" value="<? echo @$_SESSION['via'] ?>">
             <br></p>
             <p><b>Numero civico</b><br />
-            <input name="civico" type="number" value="<? echo $_SESSION['civico'] ?>">
+            <input name="civico" type="number" value="<? echo @$_SESSION['civico'] ?>">
             <br></p>
             <p><b>Città</b><br />
-            <input name="citta" type="text" value="<? echo $_SESSION['citta'] ?>">
+            <input name="citta" type="text" value="<? echo @$_SESSION['citta'] ?>">
             <br></p>
             <p><b>Provincia</b><br />
-            <input name="provincia" type="text" value="<? echo $_SESSION['provincia'] ?>">
+            <input name="provincia" type="text" value="<? echo @$_SESSION['provincia'] ?>">
             <br></p>
             <p><b>Cap</b><br />
-            <input name="cap" type="number" value="<? echo $_SESSION['cap'] ?>">
+            <input name="cap" type="number" value="<? echo @$_SESSION['cap'] ?>">
             <br></p>
             <p><input id="button" type="submit" alt="salva" value="salva"/>
             <br /></p>
             </form>
               <?php
 // attraverso un if controlliamo che il form sia stato inviato
-if ( $_GET['edit'] == "indirizzo" ) {
+if ( @$_GET['edit'] == "indirizzo" ) {
 
-$id_studente=$_SESSION['id'];
+$id_studente=@$_SESSION['id'];
 // recuperiamo i dati inviati con il form
 $via = $_POST['via'];
 $civico = $_POST['civico'];
@@ -88,11 +88,11 @@ $cap = mysql_real_escape_string($cap);
 
 mysql_query("UPDATE studenti SET via = '$via', civico = '$civico', citta = '$citta', provincia = '$provincia', cap = '$cap' WHERE id = '$id_studente'") OR DIE(mysql_error());
 
-$_SESSION['via'] = $via;
-$_SESSION['civico'] = $civico;
-$_SESSION['citta'] = $citta;
-$_SESSION['provincia'] = $provincia;
-$_SESSION['cap'] = $cap;
+@$_SESSION['via'] = $via;
+@$_SESSION['civico'] = $civico;
+@$_SESSION['citta'] = $citta;
+@$_SESSION['provincia'] = $provincia;
+@$_SESSION['cap'] = $cap;
 
 echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti modifica effettuata con successo.</b>";
 }
@@ -102,16 +102,16 @@ echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertica
             <h3>Contatti</h3>
             <form method="post" action="<? $url ?>?edit=contatti">
             <p><b>Email</b><br />
-            <input name="email" type="text" value="<? echo $_SESSION['email'] ?>">
+            <input name="email" type="text" value="<? echo @$_SESSION['email'] ?>">
             <br></p>
             <p><input id="button" type="submit" alt="salva" value="salva"/>
             <br /></p>
             </form>
 <?php
 // attraverso un if controlliamo che il form sia stato inviato
-if ( $_GET['edit'] == "contatti" ) {
+if ( @$_GET['edit'] == "contatti" ) {
 
-$id_studente=$_SESSION['id'];
+$id_studente=@$_SESSION['id'];
 // recuperiamo i dati inviati con il form
 $email = $_POST['email'];
 
@@ -123,7 +123,7 @@ if ( $num == 0 ) {
 
 mysql_query("UPDATE studenti SET email = '$email'") OR DIE(mysql_error());
 
-$_SESSION['email'] = $email;
+@$_SESSION['email'] = $email;
 
 echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti modifica effettuata con successo.</b>";
 
@@ -149,9 +149,9 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
             </form>
 <?php
 // attraverso un if controlliamo che il form sia stato inviato
-if ( $_GET['edit'] == "password" ) {
+if ( @$_GET['edit'] == "password" ) {
 
-$id_studente=$_SESSION['id'];
+$id_studente=@$_SESSION['id'];
 //recuperiamo i dati
 $password = $_POST['password'];
 $controllo_pass = $_POST['controllo_pass'];
@@ -187,7 +187,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
     </ul>
   </rside>
 <?
-} elseif ($_SESSION['login'] != "Yes") {
+} elseif (@$_SESSION['login'] != "Yes") {
 
 	
 echo "<page class='content'><section><center><img src='files/img/no.png' width='32' height='32' alt='accesso negato'style='vertical-align:middle;' /><b>Accesso non autorizzato.</b><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a><p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='registrati' value='registrati'/></a></center></section></page>  <br>
