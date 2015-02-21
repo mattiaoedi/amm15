@@ -31,7 +31,7 @@ elseif (($_SESSION['login'] == "Yes") && ($_SESSION['role'] == "docente")) {
       <p><a href="docente_elenco.php">Elenco esami</a></p>
 <?php
 }
-elseif (($_SESSION['login'] == "Yes" && ($_SESSION['role'] == "admin")) {
+elseif (($_SESSION['login'] == "Yes") && ($_SESSION['role'] == "admin")) {
 ?>
     <h2>Area riservata</h2>
       <p>Ciao, <? echo @$_SESSION['nome'] ?>  <a href="authentication.php?check=logout"><img src="files/img/logout.png" width="16" height="16" alt="logout" style="vertical-align:middle;"></a></p>
