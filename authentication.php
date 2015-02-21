@@ -57,7 +57,7 @@ $username = mysql_real_escape_string($username);
 $password = mysql_real_escape_string($password);	
 $crypt_pass = md5($password);
 
-$risultati = mysql_query("SELECT * FROM studenti WHERE username = '$username' AND password = '$crypt_pass'");
+$risultati = mysql_query("SELECT * FROM studenti WHERE username = '$username' AND password = '$crypt_pass'") OR DIE(mysql_error());
 
 $studente = mysql_fetch_array($risultati);
 
