@@ -22,7 +22,7 @@ if ( (isset($_GET['check']) && ($_GET['check'] == "login")) || (isset($_GET['che
 <html>
 <head>
 <meta charset="utf-8">
-<title>Documento senza titolo</title>
+<title>amm15 - Università di Cagliari</title>
 <link href="files/css.css" rel="stylesheet" type="text/css" />
 </head>
 
