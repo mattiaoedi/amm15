@@ -9,8 +9,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] != "studente" && $_SESSION['r
       <p><a href="index.php?page=registrazione">Registrazione</a></p>
 <?php
 }
-elseif ( ((isset($_SESSION['role']) && ($_SESSION['login'])) && ($_SESSION['login'] == "Yes") && ($_SESSION['role'] == "studente")) {
-?>
+if (isset($_SESSION['role']) && ($_SESSION['role'] == "studente" && $_SESSION['role'] != "docente" && $_SESSION['role'] != "admin")) {?>
     <h2>Area riservata</h2>
       <p>Ciao, <? echo @$_SESSION['nome'] ?>  <a href="authentication.php?check=logout"><img src="files/img/logout.png" width="16" height="16" alt="logout" style="vertical-align:middle;"></a></p>
       <p><a href="studente_home.php">Home</a></p>
@@ -20,8 +19,7 @@ elseif ( ((isset($_SESSION['role']) && ($_SESSION['login'])) && ($_SESSION['logi
     <p><!-- end .sidebar1 --></p>
 <?php
 }
-elseif ((isset($_SESSION['role']) && ($_SESSION['login'] == "Yes") && ($_SESSION['role'] == "docente")) {
-?>
+if (isset($_SESSION['role']) && ($_SESSION['role'] != "studente" && $_SESSION['role'] == "docente" && $_SESSION['role'] != "admin")) {?>
     <h2>Area riservata</h2>
       <p>Ciao, <? echo @$_SESSION['nome'] ?>  <a href="authentication.php?check=logout"><img src="files/img/logout.png" width="16" height="16" alt="logout" style="vertical-align:middle;"></a></p>
       <p><a href="docente_home.php">Home</a></p>
@@ -31,8 +29,7 @@ elseif ((isset($_SESSION['role']) && ($_SESSION['login'] == "Yes") && ($_SESSION
       <p><a href="docente_elenco.php">Elenco esami</a></p>
 <?php
 }
-elseif ((isset($_SESSION['role']) && ($_SESSION['login'] == "Yes") && ($_SESSION['role'] == "admin")) {
-?>
+elseif (isset($_SESSION['role']) && ($_SESSION['role'] != "studente" && $_SESSION['role'] != "docente" && $_SESSION['role'] == "admin")) { ?>
     <h2>Area riservata</h2>
       <p>Ciao, <? echo @$_SESSION['nome'] ?>  <a href="authentication.php?check=logout"><img src="files/img/logout.png" width="16" height="16" alt="logout" style="vertical-align:middle;"></a></p>
       <p><a href="admin_home.php">Home</a></p>
