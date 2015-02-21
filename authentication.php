@@ -1,16 +1,16 @@
-﻿<?php
+<?php
 session_start();
-$_SESSION['id_edit'] = '';
-$_SESSION['role_edit'] = '';
-$_SESSION['nome_edit']= '';
-$_SESSION['cognome_edit'] = '';
-$_SESSION['via_edit'] = '';
-$_SESSION['civico_edit'] = '';
-$_SESSION['citta_edit'] = '';
-$_SESSION['provincia_edit'] = '';
-$_SESSION['cap_edit'] = '';
-$_SESSION['email_edit'] = '';
-$_SESSION['ricevimento_edit'] = '';
+@$_SESSION['id_edit'] = '';
+@$_SESSION['role_edit'] = '';
+@$_SESSION['nome_edit']= '';
+@$_SESSION['cognome_edit'] = '';
+@$_SESSION['via_edit'] = '';
+@$_SESSION['civico_edit'] = '';
+@$_SESSION['citta_edit'] = '';
+@$_SESSION['provincia_edit'] = '';
+@$_SESSION['cap_edit'] = '';
+@$_SESSION['email_edit'] = '';
+@$_SESSION['ricevimento_edit'] = '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
@@ -41,7 +41,7 @@ if ( (isset($_GET['check']) && ($_GET['check'] == "login")) || (isset($_GET['che
 /*login*/
 // attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['check'] == "login" ) {
+if ( @$_GET['check'] == "login" ) {
 
 // recuperiamo i dati inviati con il form
 
@@ -74,73 +74,73 @@ if ( ($nums == 1) || ($numd == 1)) {
 		session_start();
 		
 if ( $nums == 1) {		
-		$_SESSION['login'] = "Yes";
-		$_SESSION['id'] = $studente['id'];
-		$_SESSION['role'] = $studente['role'];
-		$_SESSION['nome'] = $studente['nome'];
-		$_SESSION['cognome'] = $studente['cognome'];
-		$_SESSION['corso'] = $studente['corso'];
-		$_SESSION['via'] = $studente['via'];
-		$_SESSION['civico'] = $studente['civico'];
-		$_SESSION['citta'] = $studente['citta'];
-		$_SESSION['provincia'] = $studente['provincia'];
-		$_SESSION['cap'] = $studente['cap'];
-		$_SESSION['email'] = $studente['email'];
-		$_SESSION['username'] = $studente['username'];
-		$_SESSION['password'] = $studente['password'];
-		$_SESSION['data'] = $studente['data'];
+		@$_SESSION['login'] = "Yes";
+		@$_SESSION['id'] = $studente['id'];
+		@$_SESSION['role'] = $studente['role'];
+		@$_SESSION['nome'] = $studente['nome'];
+		@$_SESSION['cognome'] = $studente['cognome'];
+		@$_SESSION['corso'] = $studente['corso'];
+		@$_SESSION['via'] = $studente['via'];
+		@$_SESSION['civico'] = $studente['civico'];
+		@$_SESSION['citta'] = $studente['citta'];
+		@$_SESSION['provincia'] = $studente['provincia'];
+		@$_SESSION['cap'] = $studente['cap'];
+		@$_SESSION['email'] = $studente['email'];
+		@$_SESSION['username'] = $studente['username'];
+		@$_SESSION['password'] = $studente['password'];
+		@$_SESSION['data'] = $studente['data'];
 		
 //ricavo dati diparimento
-	$corso=$_SESSION['corso'];
+	$corso=@$_SESSION['corso'];
 	$risultati = mysql_query("SELECT * FROM corsi WHERE docente = '$corso' ");
 
 	$diparimento = mysql_fetch_array($risultati);
 
-		$_SESSION['diparimento'] = $diparimento['id'];
-		$_SESSION['nome_diparimento'] = $diparimento['nome'];
+		@$_SESSION['diparimento'] = $diparimento['id'];
+		@$_SESSION['nome_diparimento'] = $diparimento['nome'];
 //
 
 		
 } 
 else {
 
-		$_SESSION['login'] = "Yes";
-		$_SESSION['id'] = $docente['id'];
-		$_SESSION['role'] = $docente['role'];
-		$_SESSION['nome'] = $docente['nome'];
-		$_SESSION['cognome'] = $docente['cognome'];
-		$_SESSION['dipartimento'] = $docente['dipartimento'];
-		$_SESSION['corso'] = $docente['corso'];
-		$_SESSION['via'] = $docente['via'];
-		$_SESSION['civico'] = $docente['civico'];
-		$_SESSION['citta'] = $docente['citta'];
-		$_SESSION['provincia'] = $docente['provincia'];
-		$_SESSION['cap'] = $docente['cap'];
-		$_SESSION['email'] = $docente['email'];
-		$_SESSION['ricevimento'] = $docente['ricevimento'];
-		$_SESSION['username'] = $docente['username'];
-		$_SESSION['password'] = $docente['password'];
-		$_SESSION['data'] = $docente['data'];
+		@$_SESSION['login'] = "Yes";
+		@$_SESSION['id'] = $docente['id'];
+		@$_SESSION['role'] = $docente['role'];
+		@$_SESSION['nome'] = $docente['nome'];
+		@$_SESSION['cognome'] = $docente['cognome'];
+		@$_SESSION['dipartimento'] = $docente['dipartimento'];
+		@$_SESSION['corso'] = $docente['corso'];
+		@$_SESSION['via'] = $docente['via'];
+		@$_SESSION['civico'] = $docente['civico'];
+		@$_SESSION['citta'] = $docente['citta'];
+		@$_SESSION['provincia'] = $docente['provincia'];
+		@$_SESSION['cap'] = $docente['cap'];
+		@$_SESSION['email'] = $docente['email'];
+		@$_SESSION['ricevimento'] = $docente['ricevimento'];
+		@$_SESSION['username'] = $docente['username'];
+		@$_SESSION['password'] = $docente['password'];
+		@$_SESSION['data'] = $docente['data'];
 
 //ricavo dati insegnamento	
-	$id = $_SESSION['id'];
+	$id = @$_SESSION['id'];
 	$risultati = mysql_query("SELECT * FROM insegnamenti WHERE docente = '$id' ");
 
 	$insegnamento = mysql_fetch_array($risultati);
 
-		$_SESSION['id_insegnamento'] = $insegnamento['id'];
-		$_SESSION['nome_insegnamento'] = $insegnamento['nome'];
+		@$_SESSION['id_insegnamento'] = $insegnamento['id'];
+		@$_SESSION['nome_insegnamento'] = $insegnamento['nome'];
 
 //
 }
 // messaggi da far visualizzare per conferma login
 
 //controlli per il reindirizzamento
-if ($_SESSION['role'] == 'studente') {
+if (@$_SESSION['role'] == 'studente') {
 	$url="studente_home.php";
-} elseif ($_SESSION['role'] == 'docente') {
+} elseif (@$_SESSION['role'] == 'docente') {
 	$url="docente_home.php";;
-} elseif ($_SESSION['role'] == 'admin') {
+} elseif (@$_SESSION['role'] == 'admin') {
 	$url="admin_home.php";
 }
 
@@ -165,7 +165,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 /*registrazione*/
 // attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['check'] == "registrazione" ) {
+if ( @$_GET['check'] == "registrazione" ) {
 
 // recuperiamo i dati inviati con il form
 $nome = ucwords($_POST['nome']);
@@ -263,7 +263,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 /*registrazione*/
 // attraverso un if controlliamo che il form sia stato inviato
-	if ( $_GET['check'] == "logout" ) {
+	if ( @$_GET['check'] == "logout" ) {
 //Distruggo la vecchia sessione		
 	session_unset();
 	session_destroy();
