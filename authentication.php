@@ -222,7 +222,7 @@ $crypt_pass = md5($password);
 mysql_query("INSERT INTO studenti
              (id, role, nome, cognome, corso, via, civico, citta, provincia, cap, email, username, password, data )
              VALUES
-             ('', '', '$nome', '$cognome', '$corso', '', '', '', '', '', '$email', '$username', '$crypt_pass', CURRENT_TIMESTAMP )") OR DIE(mysql_error());
+             ('', 'studente', '$nome', '$cognome', '$corso', '', '', '', '', '', '$email', '$username', '$crypt_pass', CURRENT_TIMESTAMP )") OR DIE(mysql_error());
 
 // e inviamo una mail con la riuscita registazione
 
