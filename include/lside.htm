@@ -1,6 +1,6 @@
 <lside> 
 <?php
-if (isset(@$_SESSION['role']) && (@$_SESSION['role'] != "studente" && @$_SESSION['role'] != "docente" && @$_SESSION['role'] != "admin")) {
+if (isset($_SESSION['role']) && (@$_SESSION['role'] != "studente" && @_SESSION['role'] != "docente" && $_SESSION['role'] != "admin")) {
 ?>      
 	<h2>Benvenuto!</h2>
       <p><a href="index.php">Descrizione</a></p>
