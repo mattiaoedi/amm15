@@ -1,16 +1,16 @@
 <?php
 session_start();
-$_SESSION['id_edit'] = '';
-$_SESSION['role_edit'] = '';
-$_SESSION['nome_edit']= '';
-$_SESSION['cognome_edit'] = '';
-$_SESSION['via_edit'] = '';
-$_SESSION['civico_edit'] = '';
-$_SESSION['citta_edit'] = '';
-$_SESSION['provincia_edit'] = '';
-$_SESSION['cap_edit'] = '';
-$_SESSION['email_edit'] = '';
-$_SESSION['ricevimento_edit'] = '';
+@$_SESSION['id_edit'] = '';
+@$_SESSION['role_edit'] = '';
+@$_SESSION['nome_edit']= '';
+@$_SESSION['cognome_edit'] = '';
+@$_SESSION['via_edit'] = '';
+@$_SESSION['civico_edit'] = '';
+@$_SESSION['citta_edit'] = '';
+@$_SESSION['provincia_edit'] = '';
+@$_SESSION['cap_edit'] = '';
+@$_SESSION['email_edit'] = '';
+@$_SESSION['ricevimento_edit'] = '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
@@ -38,14 +38,14 @@ if ( (isset($_GET['add']) && ($_GET['add'] == "appello")) || (isset($_GET['show'
 <?php include 'include/lside.htm'; ?>
 <? 
 //controllo docente
-if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'admin') {
+if (@$_SESSION['login'] == "Yes" && @$_SESSION['role'] == 'admin') {
 ?>
 <page class="content">
   <section>
     <h2 class="icona" id="cerca-m">Elenco storico esami</h2>
     <p>&nbsp;</p>
-    <p><strong>Nome: </strong> <? echo $_SESSION['nome'] ?></p>
-    <p><strong>Cognome: </strong> <? echo $_SESSION['cognome'] ?></p>
+    <p><strong>Nome: </strong> <? echo @$_SESSION['nome'] ?></p>
+    <p><strong>Cognome: </strong> <? echo @$_SESSION['cognome'] ?></p>
     <p><strong>Gestione come amministratore</strong></p>
     <hr width="100%" size="2" color="1c345a">
     <h3>Filtri</h3>
@@ -118,7 +118,7 @@ if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'admin') {
     <hr width="100%" size="2" color="1c345a">
     <h3>Elenco esami</h3>
 <?	
-		if ( $_GET['search'] == "esami" ) {
+		if ( @$_GET['search'] == "esami" ) {
 			
 		} else {
 
@@ -196,10 +196,10 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 			$i=0;
             while ($i < $num) {
 			
-			if ( $_GET['show'] == (mysql_result($esami,$i,'id')) ) {
+			if ( @$_GET['show'] == (mysql_result($esami,$i,'id')) ) {
 				
-				$id_esame = $_GET['show'];
-				$_SESSION['id_esame'] = $id_esame;
+				$id_esame = @$_GET['show'];
+				@$_SESSION['id_esame'] = $id_esame;
 				
 				}
 				
@@ -210,7 +210,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 //attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['show'] == $id_esame ) {
+if ( @$_GET['show'] == $id_esame ) {
 	
 	$get_url = $_SERVER['REQUEST_URI'];
 	
@@ -242,9 +242,9 @@ echo '<p>&nbsp;</p>
 <?php
 //attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['edit'] == "esame" ) {
+if ( @$_GET['edit'] == "esame" ) {
 
-$id_esame = $_SESSION['id_esame'];	
+$id_esame = @$_SESSION['id_esame'];	
 //recuperiamo i dati inviati con il form
 $matricola = $_POST['matricola'];
 $voto = $_POST['voto'];
@@ -253,7 +253,7 @@ if ( $matricola == TRUE && $voto == TRUE ) {
 
 mysql_query("UPDATE esami SET matricola = '$matricola', voto = '$voto' WHERE id = '$id_esame'") OR DIE(mysql_error());
 
-$_SESSION['id_esame'] = '';
+@$_SESSION['id_esame'] = '';
 
 echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti creazione effettuata con successo.</b><p>&nbsp;</p>";
 
@@ -262,9 +262,9 @@ echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertica
 echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;' /><b>Tutti i campi sono obbligatori.</b><p>&nbsp;</p>";
 
 }
-} elseif ( $_GET['delete'] == $id_esame ) {
+} elseif ( @$_GET['delete'] == $id_esame ) {
 	
-$id_esame = $_GET['delete'];
+$id_esame = @$_GET['delete'];
 
 mysql_query("DELETE FROM esami WHERE id = '$id_esame'") OR DIE(mysql_error());
 
@@ -284,7 +284,7 @@ echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertica
     <img src="files/img/delete.png" alt="icona elimina"></p>
 </rside>
 <?
-} elseif ($_SESSION['login'] != "Yes") {
+} elseif (@$_SESSION['login'] != "Yes") {
 
 	
 echo "<page class='content'><section><center><img src='files/img/no.png' width='32' height='32' alt='accesso negato'style='vertical-align:middle;' /><b>Accesso non autorizzato.</b><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a><p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='registrati' value='registrati'/></a></center></section></page>
