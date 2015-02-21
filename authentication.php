@@ -213,7 +213,6 @@ if ( $password == $controllo_pass ) {
 
 $nome = mysql_real_escape_string($nome);
 $cognome = mysql_real_escape_string($cognome);
-$dipartimento = mysql_real_escape_string($dipartimento);
 $corso = mysql_real_escape_string($corso);
 $username = mysql_real_escape_string($username);
 $password = mysql_real_escape_string($password);
