@@ -226,7 +226,7 @@ mysql_query("INSERT INTO studenti
 
 // e inviamo una mail con la riuscita registazione
 
-mail ($mail, "Registrazione OK", "Complimenti registrazione presso il portale amm 15 effettuata con successo.<br />Ricordiamo che le credeziali di accesso sono:<br />Nome utente:$username<br />Password:$password<br /><br />In caso smarriate una delle tue vi invitiamo a contattare l'amministratore.", "From: registrazioni@amm15.net");
+@mail ($mail, "Registrazione OK", "Complimenti registrazione presso il portale amm 15 effettuata con successo.<br />Ricordiamo che le credeziali di accesso sono:<br />Nome utente:$username<br />Password:$password<br /><br />In caso smarriate una delle tue vi invitiamo a contattare l'amministratore.", "From: registrazioni@amm15.net");
 
 // messaggi da far visualizzare all'utente finale
 
