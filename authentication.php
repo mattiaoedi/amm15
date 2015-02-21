@@ -45,9 +45,9 @@ if ( @$_GET['check'] == "login" ) {
 
 // recuperiamo i dati inviati con il form
 
-$username = $_POST['username'];
+$username = @$_POST['username'];
 
-$password = $_POST['password'];
+$password = @$_POST['password'];
 
 // ora controlliamo che i campi siano stati tutti compilati
 
@@ -70,8 +70,6 @@ $docente = mysql_fetch_array($risultati);
 $numd = mysql_num_rows($risultati);
 
 if ( ($nums == 1) || ($numd == 1)) {
-
-		session_start();
 		
 if ( $nums == 1) {		
 		@$_SESSION['login'] = "Yes";
