@@ -1,16 +1,16 @@
 <?php
 session_start();
-$_SESSION['id_edit'] = '';
-$_SESSION['role_edit'] = '';
-$_SESSION['nome_edit']= '';
-$_SESSION['cognome_edit'] = '';
-$_SESSION['via_edit'] = '';
-$_SESSION['civico_edit'] = '';
-$_SESSION['citta_edit'] = '';
-$_SESSION['provincia_edit'] = '';
-$_SESSION['cap_edit'] = '';
-$_SESSION['email_edit'] = '';
-$_SESSION['ricevimento_edit'] = '';
+@$_SESSION['id_edit'] = '';
+@$_SESSION['role_edit'] = '';
+@$_SESSION['nome_edit']= '';
+@$_SESSION['cognome_edit'] = '';
+@$_SESSION['via_edit'] = '';
+@$_SESSION['civico_edit'] = '';
+@$_SESSION['citta_edit'] = '';
+@$_SESSION['provincia_edit'] = '';
+@$_SESSION['cap_edit'] = '';
+@$_SESSION['email_edit'] = '';
+@$_SESSION['ricevimento_edit'] = '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
@@ -38,14 +38,14 @@ if ( (isset($_GET['show']) && ($_GET['show'] == "dipartimento")) ||  (isset($_GE
 <?php include 'include/lside.htm'; ?>
 <? 
 //controllo studente
-if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'admin') {
+if (@$_SESSION['login'] == "Yes" && @$_SESSION['role'] == 'admin') {
 ?>
   <page class="content">
     <section>
      <h2 class="icona" id="quadro-m">Dipartimenti e corsi di laurea</h2>
       <p>&nbsp;</p>
-      <p><strong>Nome: </strong> <? echo $_SESSION['nome'] ?></p>
-      <p><strong>Cognome: </strong> <? echo $_SESSION['cognome'] ?></p>
+      <p><strong>Nome: </strong> <? echo @$_SESSION['nome'] ?></p>
+      <p><strong>Cognome: </strong> <? echo @$_SESSION['cognome'] ?></p>
       <p><strong>Gestione come amministratore</strong></p>
           <hr width="100%" size="2" color="1c345a">
         <h3>Dipartimenti</h3>
@@ -87,7 +87,7 @@ if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'admin') {
 			
 			if ( $id_corso == (mysql_result($corso,$i,'id')) ) {
 				
-				$id_corso = $_SESSION['id_corso'];
+				$id_corso = @$_SESSION['id_corso'];
 				
 				}
 				
@@ -98,11 +98,11 @@ if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'admin') {
 <?php
 //attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['show'] == "dipartimento" ) {
+if ( @$_GET['show'] == "dipartimento" ) {
 	
 $get_url = $_SERVER['REQUEST_URI'];	
 $id_dipartimento = $_POST['dipartimento'];
-$_SESSION['id_dipartimento'] = $id_dipartimento;
+@$_SESSION['id_dipartimento'] = $id_dipartimento;
 $risultati = mysql_query("SELECT * FROM dipartimenti WHERE id = '$id_dipartimento' ORDER BY id");
 $dipartimento = mysql_fetch_array($risultati);
 $echo_dipartimento_nome = $dipartimento["nome"];
@@ -121,7 +121,7 @@ $echo_dipartimento_nome = $dipartimento["nome"];
 }
 //attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['edit'] == "dipartimento" ) {
+if ( @$_GET['edit'] == "dipartimento" ) {
 	
 $get_url = $_SERVER['REQUEST_URI'];	
 
@@ -134,7 +134,7 @@ $cfu = mysql_real_escape_string($cfu);
 
 mysql_query("UPDATE dipartimenti SET nome = '$nome_dipartimento' WHERE id ='$id_dipartimento'") OR DIE(mysql_error());
 
-$_SESSION['id_dipartimento'] = '';
+@$_SESSION['id_dipartimento'] = '';
 
 echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti modifica effettuata con successo.";
 
@@ -187,7 +187,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 			
 			if ( $id_corso == (mysql_result($corso,$i,'id')) ) {
 				
-				$id_corso = $_SESSION['id_corso'];
+				$id_corso = @$_SESSION['id_corso'];
 				
 				}
 				
@@ -198,11 +198,11 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 //attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['show'] == "corso" ) {
+if ( @$_GET['show'] == "corso" ) {
 	
 $get_url = $_SERVER['REQUEST_URI'];	
 $id_corso = $_POST['corso'];
-$_SESSION['id_corso'] = $id_corso;
+@$_SESSION['id_corso'] = $id_corso;
 $risultati = mysql_query("SELECT * FROM corsi WHERE id = '$id_corso' ORDER BY id");
 $corso = mysql_fetch_array($risultati);
 $echo_corso_nome = $corso["nome"];
@@ -256,7 +256,7 @@ $echo_corso_nome = $corso["nome"];
 }
 //attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['edit'] == "corso" ) {
+if ( @$_GET['edit'] == "corso" ) {
 	
 $get_url = $_SERVER['REQUEST_URI'];	
 
@@ -270,7 +270,7 @@ $cfu = mysql_real_escape_string($cfu);
 
 mysql_query("UPDATE insegnamenti SET nome = '$nome_corso', dipartimento = '$dipartimento_corso' WHERE id = 'id_corso'") OR DIE(mysql_error());
 
-$_SESSION['id_corso'] = '';
+@$_SESSION['id_corso'] = '';
 
 echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti modifica effettuata con successo.";
 
@@ -323,7 +323,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 			
 			if ( $id_insegnamento == (mysql_result($insegnamento,$i,'id')) ) {
 				
-				$id_insegnamento = $_SESSION['id_insegnamento'];
+				$id_insegnamento = @$_SESSION['id_insegnamento'];
 				
 				}
 				
@@ -334,11 +334,11 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 //attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['show'] == "insegnamento" ) {
+if ( @$_GET['show'] == "insegnamento" ) {
 	
 $get_url = $_SERVER['REQUEST_URI'];	
 $id_insegnamento = $_POST['insegnamento'];
-$_SESSION['id_insegnamento'] = $id_insegnamento;
+@$_SESSION['id_insegnamento'] = $id_insegnamento;
 $risultati = mysql_query("SELECT * FROM insegnamenti WHERE id = '$id_insegnamento' ORDER BY id");
 $insegnamento = mysql_fetch_array($risultati);
 $echo_insegnamento_nome = $insegnamento["nome"];
@@ -433,7 +433,7 @@ $echo_insegnamento_cfu = $insegnamento["crediti"];
 }
 //attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['edit'] == "insegnamento" ) {
+if ( @$_GET['edit'] == "insegnamento" ) {
 	
 $get_url = $_SERVER['REQUEST_URI'];	
 
@@ -449,7 +449,7 @@ $cfu = mysql_real_escape_string($cfu);
 
 mysql_query("UPDATE SET insegnamenti nome = '$nome_insegnamento', corso = '$corso_insegnamento', docente = '$docente_insegnamento', cfu = '$cfu_insegnamento' WHERE id = 'id_insegnamento'") OR DIE(mysql_error());
 
-$_SESSION['id_insegnamento'] = '';
+@$_SESSION['id_insegnamento'] = '';
 
 echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti modifica effettuata con successo.";
 
@@ -477,7 +477,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 //attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['add'] == "dipartimento" ) {
+if ( @$_GET['add'] == "dipartimento" ) {
 
 $get_url = $_SERVER['REQUEST_URI'];
 
@@ -542,7 +542,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 //attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['add'] == "corso" ) {
+if ( @$_GET['add'] == "corso" ) {
 
 $get_url = $_SERVER['REQUEST_URI'];
 
@@ -643,7 +643,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 //attraverso un if controlliamo che il form sia stato inviato
 
-if ( $_GET['add'] == "insegnamento" ) {
+if ( @$_GET['add'] == "insegnamento" ) {
 	
 $get_url = $_SERVER['REQUEST_URI'];	
 
@@ -680,7 +680,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
     <p>In questa sezione è possibile inserire nuovi dipartimenti, nuovi corsi e nuovi insegnamenti. Negli insegnamenti è possibile associare solo docenti senza corso.</p>
   </rside>
 <?
-} elseif ($_SESSION['login'] != "Yes") {
+} elseif (@$_SESSION['login'] != "Yes") {
 
 	
 echo "<page class='content'><section><center><img src='files/img/no.png' width='32' height='32' alt='accesso negato'style='vertical-align:middle;' /><b>Accesso non autorizzato.</b><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a><p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='registrati' value='registrati'/></a></center></section></page>  <br>
