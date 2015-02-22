@@ -34,7 +34,7 @@ include ('files/config.php');
 <?php include 'include/lside.htm'; ?>
 <? 
 //controllo studente
-if ($_SESSION['login'] == "yes" && $_SESSION['role'] == "studente" ) {
+if (($_SESSION['login'] == "yes" && $_SESSION['role'] == "studente")) {
 ?>
 <page class="content">
     <section>
@@ -67,7 +67,7 @@ echo "<page class='content'><section><center><img src='files/img/no.png' width='
       <li><strong>Registrati</strong>, per diventare uno studente.</li>
   </rside>";
 
-} else {
+} elseif ( isset($_GET['check']) && $_GET['check'] == "logout" ) {} else {
 	
 echo "<page class='content'><section><center><img src='files/img/no.png' width='32' height='32' alt='accesso negato' style='vertical-align:middle;' /><b>Accesso non autorizzato.</b></center></section></page>
 	<rside>
