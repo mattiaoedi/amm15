@@ -47,7 +47,7 @@ $_SESSION['email_reg'] == '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
-if ( (isset($_GET['show']) && ($_GET['show'] == "dipartimento")) ||  (isset($_GET['show']) && ($_GET['show'] == "corso")) || (isset($_GET['show']) && ($_GET['show'] == "insegnamento")) || (isset($_GET['edit']) && ($_GET['edit'] == "dipartimento")) ||  (isset($_GET['edit']) && ($_GET['edit'] == "corso")) || (isset($_GET['edit']) && ($_GET['edit'] == "insegnamento")) || (isset($_GET['add']) && ($_GET['add'] == "dipartimento")) ||  (isset($_GET['add']) && ($_GET['add'] == "corso")) || (isset($_GET['add']) && ($_GET['add'] == "insegnamento"))) {
+if ( (isset($_GET['edit']) && ($_GET['edit'] == "dipartimento")) ||  (isset($_GET['edit']) && ($_GET['edit'] == "corso")) || (isset($_GET['edit']) && ($_GET['edit'] == "insegnamento")) || (isset($_GET['add']) && ($_GET['add'] == "dipartimento")) ||  (isset($_GET['add']) && ($_GET['add'] == "corso")) || (isset($_GET['add']) && ($_GET['add'] == "insegnamento"))) {
 	header( "refresh:2;url={$_SERVER['PHP_SELF']}" );
 	}
 	
