@@ -460,22 +460,28 @@ if (  isset($_GET['check']) && $_GET['check'] == "registrazione" ) {
 if (isset($_POST['nome'])) {
 $nome = $_POST['nome'];
 $_SESSION['nome_reg'] = $_POST['nome']; }
+else $nome ="";
 if (isset($_POST['cognome'])) {
 $cognome = $_POST['cognome'];
 $_SESSION['cognome_reg'] = $_POST['cognome']; }
+else $cognome ="";
 if (isset($_POST['corso'])) {
 $corso = $_POST['corso'];
 $_SESSION['corso_reg'] = ucwords($_POST['corso']); }
+else $corso ="";
 if (isset($_POST['email'])) {
 $email = $_POST['email'];
 $_SESSION['email_reg'] = $_POST['email']; }
+else $email ="";
 if (isset($_POST['password']))
 $password = $_POST['password'];
+else $password ="";
 if (isset($_POST['controllo_pass']))
 $controllo_pass = $_POST['controllo_pass'];
+else $controllo_pass ="";
 
 //ora controlliamo che i campi siano stati tutti compilati
-if ( isset($nome)  && isset($cognome) && isset($corso) && isset($password) && isset($controllo_pass)  )  {
+if ( $nome  && $cognome == TRUE && $corso == TRUE && $password == TRUE && $controllo_pass == TRUE )  {
 
 //controlliamo se l'mail è presente già nel database
 $sql = mysql_query("SELECT * FROM studenti WHERE email = '$email'");
