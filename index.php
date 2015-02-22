@@ -236,7 +236,7 @@ $get_url = $_SERVER['REQUEST_URI'];
     <section>
      <h2>Login</h2>
       <p>
-<form action="'<? echo $get_url ?>&check=login" method="post">
+<form action="<? echo $get_url ?>&check=login" method="post">
 
 	<p><b>Nome Utente</b><br />
 	<input type="text" name="username" id="username"/>
