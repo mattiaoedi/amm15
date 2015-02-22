@@ -1,9 +1,9 @@
 <lside> 
-<?php
-if (( isset($_SESSION['login']) && isset($_SESSION['role']) ) && (@$_SESSION['role'] != "studente" && @$_SESSION['role'] != "docente" && @$_SESSION['role'] != "admin")) {
-?>      
 	<h2>Benvenuto!</h2>
       <p><a href="index.php">Descrizione</a></p>
+<?php
+if (( isset($_SESSION['role']) ) && (@$_SESSION['role'] != "studente" && @$_SESSION['role'] != "docente" && @$_SESSION['role'] != "admin")) {
+?> 
     <h2>Area riservata</h2>
       <p><a href="index.php?page=login">Login</a></p>
       <p><a href="index.php?page=registrazione">Registrazione</a></p>
