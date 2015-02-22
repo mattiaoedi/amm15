@@ -567,7 +567,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 /*logout*/
 // attraverso un if controlliamo che il form sia stato inviato
-	if ( isset($_GET['check']) && $_GET['check'] == "logout" ) {
+	if ( $_GET['check'] == "logout" ) {
 //Distruggo la vecchia sessione		
 	$_SESSION['login'] = "no";
 	session_unset();
