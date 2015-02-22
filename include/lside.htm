@@ -2,8 +2,7 @@
 	<h2>Benvenuto!</h2>
       <p><a href="index.php">Descrizione</a></p>
 <?php
-}
-if ((((isset($_SESSION['login']) && $_SESSION['login']) == "yes" )) && (isset($_SESSION['role']) && ($_SESSION['role'] == "studente" && $_SESSION['role'] != "docente" && $_SESSION['role'] != "admin"))) {?>
+if ((((isset($_SESSION['login']) && $_SESSION['login']) =="yes" )) && (isset($_SESSION['role']) && ($_SESSION['role'] == "studente" && $_SESSION['role'] != "docente" && $_SESSION['role'] != "admin"))) {?>
     <h2>Area riservata</h2>
       <p>Ciao, <? echo @$_SESSION['nome'] ?>  <a href="authentication.php?check=logout"><img src="files/img/logout.png" width="16" height="16" alt="logout" style="vertical-align:middle;"></a></p>
       <p><a href="studente_home.php">Home</a></p>
@@ -12,8 +11,7 @@ if ((((isset($_SESSION['login']) && $_SESSION['login']) == "yes" )) && (isset($_
       <p><a href="studente_iscrivi.php">Esami</a></p>
     <p><!-- end .sidebar1 --></p>
 <?php
-}
-if ((((isset($_SESSION['login']) && $_SESSION['login']) == "yes" )) && (isset($_SESSION['role']) && ($_SESSION['role'] != "studente" && $_SESSION['role'] == "docente" && $_SESSION['role'] != "admin"))) {?>
+} elseif ((((isset($_SESSION['login']) && $_SESSION['login']) =="yes" )) && (isset($_SESSION['role']) && ($_SESSION['role'] != "studente" && $_SESSION['role'] == "docente" && $_SESSION['role'] != "admin"))) {?>
     <h2>Area riservata</h2>
       <p>Ciao, <? echo @$_SESSION['nome'] ?>  <a href="authentication.php?check=logout"><img src="files/img/logout.png" width="16" height="16" alt="logout" style="vertical-align:middle;"></a></p>
       <p><a href="docente_home.php">Home</a></p>
@@ -22,8 +20,7 @@ if ((((isset($_SESSION['login']) && $_SESSION['login']) == "yes" )) && (isset($_
       <p><a href="docente_registra.php">Registra esame</a></p>
       <p><a href="docente_elenco.php">Elenco esami</a></p>
 <?php
-}
-elseif ((((isset($_SESSION['login']) && $_SESSION['login']) == "yes" )) && isset($_SESSION['role']) && ($_SESSION['role'] != "studente" && $_SESSION['role'] != "docente" && $_SESSION['role'] == "admin")) { ?>
+} elseif ((((isset($_SESSION['login']) && $_SESSION['login']) =="yes" )) && isset($_SESSION['role']) && ($_SESSION['role'] != "studente" && $_SESSION['role'] != "docente" && $_SESSION['role'] == "admin")) { ?>
     <h2>Area riservata</h2>
       <p>Ciao, <? echo @$_SESSION['nome'] ?>  <a href="authentication.php?check=logout"><img src="files/img/logout.png" width="16" height="16" alt="logout" style="vertical-align:middle;"></a></p>
       <p><a href="admin_home.php">Home</a></p>
@@ -35,12 +32,11 @@ elseif ((((isset($_SESSION['login']) && $_SESSION['login']) == "yes" )) && isset
       <p><a href="admin_quadro.php">Dip &amp; CdL</a></p>
 <?php
 } else {
-
 ?> 
     <h2>Area riservata</h2>
       <p><a href="index.php?page=login">Login</a></p>
       <p><a href="index.php?page=registrazione">Registrazione</a></p>
-      
+<?php
 }
 ?>
     <p><!-- end .sidebar1 --></p>
