@@ -45,7 +45,7 @@ $_SESSION['email_reg'] == '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
-if ( (isset($_GET['show']) && ($_GET['show'] == "studente")) ||  (isset($_GET['edit']) && ($_GET['edit'] == "dati")) || (isset($_GET['edit']) && ($_GET['edit'] == "indirizzo")) || (isset($_GET['edit']) && ($_GET['edit'] == "contatti")) || (isset($_GET['edit']) && ($_GET['edit'] == "password"))) {
+if ( (isset($_GET['edit']) && ($_GET['edit'] == "dati")) || (isset($_GET['edit']) && ($_GET['edit'] == "indirizzo")) || (isset($_GET['edit']) && ($_GET['edit'] == "contatti")) || (isset($_GET['edit']) && ($_GET['edit'] == "password"))) {
 	header( "refresh:2;url={$_SERVER['PHP_SELF']}" );
 	}
 	
