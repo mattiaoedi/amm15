@@ -14,9 +14,9 @@ session_start();
 // includiamo il file di connessione al database
 include ('files/config.php');
 
-	if ((isset($_SESSION['login']) && ($_SESSION['login'] == "Yes")) ) {
+	/*if ((isset($_SESSION['login']) && ($_SESSION['login'] == "Yes")) ) {
 	header("Location: studente_home.php");
-	}	
+	}*/	
 ?>
 <!doctype html>
 <html>
@@ -92,6 +92,9 @@ if ( $nums == 1) {
 	$corso=@$_SESSION['corso'];
 	$risultati = mysql_query("SELECT dipartimento FROM corsi WHERE id = '$corso' ");
 	$diparimento = mysql_fetch_array($risultati);
+	$num = mysql_num_rows($risultati);
+
+	if ( $num == 1) {
 	$id_dipartimento = $diparimento['id'];
 	
 	$risultati = mysql_query("SELECT id, nome FROM corsi WHERE id = '$id_dipartimento' ") OR DIE(mysql_error());
@@ -99,6 +102,7 @@ if ( $nums == 1) {
 
 		@$_SESSION['diparimento'] = $diparimento['id'];
 		@$_SESSION['nome_diparimento'] = $diparimento['nome'];
+	}
 //
 
 		
@@ -126,11 +130,13 @@ else {
 //ricavo dati insegnamento	
 	$id = @$_SESSION['id'];
 	$risultati = mysql_query("SELECT * FROM insegnamenti WHERE docente = '$id' ");
-
 	$insegnamento = mysql_fetch_array($risultati);
+	$num = mysql_num_rows($risultati);
 
+	if ( $num == 1) {
 		@$_SESSION['id_insegnamento'] = $insegnamento['id'];
 		@$_SESSION['nome_insegnamento'] = $insegnamento['nome'];
+	}
 
 //
 }
