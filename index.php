@@ -339,6 +339,7 @@ if ( $nums == 1) {
 		@$_SESSION['data'] = $studente['data'];
 		
 //ricavo dati diparimento
+	if (isset($_SESSION['corso']))
 	$corso=@$_SESSION['corso'];
 	$risultati = mysql_query("SELECT dipartimento FROM corsi WHERE id = '$corso' ");
 	$diparimento = mysql_fetch_array($risultati);
@@ -349,8 +350,8 @@ if ( $nums == 1) {
 	$risultati = mysql_query("SELECT id, nome FROM corsi WHERE id = '$id_dipartimento' ") OR DIE(mysql_error());
 	$diparimento = mysql_fetch_array($risultati);
 
-		@$_SESSION['diparimento'] = $diparimento['id'];
-		@$_SESSION['nome_diparimento'] = $diparimento['nome'];
+		$_SESSION['diparimento'] = $diparimento['id'];
+		$_SESSION['nome_diparimento'] = $diparimento['nome'];
 		header("Location: studente_home.php");
 	}		
 } else {
@@ -374,22 +375,23 @@ if ( $nums == 1) {
 		$_SESSION['data'] = $docente['data'];
 
 //ricavo dati insegnamento	
-	$id = @$_SESSION['id'];
+    if (isset($_SESSION['id']))
+	$id = $_SESSION['id'];
 	$risultati = mysql_query("SELECT * FROM insegnamenti WHERE docente = '$id' ");
 	$insegnamento = mysql_fetch_array($risultati);
 	$num = mysql_num_rows($risultati);
 
 	if ( $num == 1) {
-		@$_SESSION['id_insegnamento'] = $insegnamento['id'];
-		@$_SESSION['nome_insegnamento'] = $insegnamento['nome'];
+		$_SESSION['id_insegnamento'] = $insegnamento['id'];
+		$_SESSION['nome_insegnamento'] = $insegnamento['nome'];
 	}
 
 //reindirizzamento
-    if ($docente['role'] = "docente") {
+    if (isset($_SESSION['role']) && $_SESSION['role'] = "docente") {
 		
 	header("Location: docente_home.php");	
 	
-	} elseif ($docente['role'] = "admin") {
+	} elseif (isset($_SESSION['role']) && $_SESSION['role'] = "admin") {
 		
 	header("Location: admin_home.php");	
 	}
