@@ -270,8 +270,10 @@ if ( isset($_GET['check']) && $_GET['check'] == "login" ) {
 // recuperiamo i dati inviati con il form
 if ( isset($_POST['username']))
 $username = $_POST['username'];
+else $username = '';
 if ( isset($_POST['password']))
-$password = $_POST['password'];		
+$password = $_POST['password'];
+else $password = '';
 
 // ora controlliamo che i campi siano stati tutti compilati
 if ( $username == TRUE && $password == TRUE)  {
