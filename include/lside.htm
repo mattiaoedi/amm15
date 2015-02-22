@@ -2,7 +2,7 @@
 	<h2>Benvenuto!</h2>
       <p><a href="index.php">Descrizione</a></p>
 <?php
-if (  1 == 1 || ( (((isset($_SESSION['login']) && $_SESSION['login']) == "no" )) && (isset($_SESSION['role']) && ($_SESSION['role'] != "studente" && $_SESSION['role'] != "docente" && $_SESSION['role'] != "admin")) )) {
+if (  1 == 1 && ( (((isset($_SESSION['login']) && $_SESSION['login']) == "no" )) && (isset($_SESSION['role']) && ($_SESSION['role'] != "studente" && $_SESSION['role'] != "docente" && $_SESSION['role'] != "admin")) )) {
 ?> 
     <h2>Area riservata</h2>
       <p><a href="index.php?page=login">Login</a></p>
