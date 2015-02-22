@@ -247,7 +247,7 @@ else
     <p>Ricerca nel portale amm15</p>
   </rside>');
 
-	$page = @$_GET['page'];	
+	$page = $_GET['page'];	
 
 	echo $pagine[$page] ;
 	
