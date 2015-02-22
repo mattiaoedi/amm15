@@ -247,38 +247,9 @@ else
     <p>Ricerca nel portale amm15</p>
   </rside>');
 
-    $pagine_2 = array(
-	'area'=> '',
-	'anagrafica'=> '',
-	'libretto'=> '',
-	'esami'=> '');
-	
-	$pagine_3 = array(
-	'area'=> '',
-	'anagrafica'=> '',
-	'apelli'=> '',
-	'registra'=> '',
-	'elenco'=> '');
-	
-	$pagine_4 = array(
-	'area'=> '',
-	'studenti'=> '',
-	'docenti'=> '',
-	'appelli'=> '',
-	'registrazione'=> '',
-	'elenco'=> '',
-	'dipartimenti'=> '');
-
 	$page = @$_GET['page'];	
-	$studente = @$_GET['studente'];
-	$docente = @$_GET['docente'];
-	$admin = @$_GET['admin'];
 
-	
 	echo $pagine[$page] ;
-	echo $pagine_2[$studente] ;
-	echo $pagine_3[$docente] ;
-	echo $pagine_4[$admin] ;
 	
 	}
 ?>
@@ -486,11 +457,17 @@ $get_url = $_SERVER['REQUEST_URI'];
 if (  isset($_GET['check']) && $_GET['check'] == "registrazione" ) {
 
 //recuperiamo i dati inviati con il form
+if (isset($_POST['nome']))
 $nome = ucwords($_POST['nome']);
+if (isset($_POST['cognome']))
 $cognome = ucwords($_POST['cognome']);
+if (isset($_POST['corso']))
 $corso = ucwords($_POST['corso']);
+if (isset($_POST['email']))
 $email = $_POST['email'];
+if (isset($_POST['password']))
 $password = $_POST['password'];
+if (isset($_POST['controllo_pass']))
 $controllo_pass = $_POST['controllo_pass'];
 
 $_SESSION['nome_reg'] = ucwords($_POST['nome']);
