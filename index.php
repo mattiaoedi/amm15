@@ -418,7 +418,7 @@ if (  isset($_GET['page']) && $_GET['page'] == "registrazione" ) {
 	<section>
      <h2>Registrazione</h2>
       <p>
-<form action="&check=registrazione" method="post" name="registrazione">
+<form action="<? echo $url ?>&check=registrazione" method="post" name="registrazione">
 
 	<p><b>Nome</b><br />
 	<input type="text" name="nome" value="<? if (isset($_SESSION['nome_reg'])) echo $_SESSION['nome_reg'];?>"/>
