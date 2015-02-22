@@ -17,7 +17,7 @@ include ('files/config.php');
 if ( (isset($_GET['check']) && ($_GET['check'] == "logout"))) {
 	header( "refresh:1;url=index.php" );
 	}	
-	if ((isset($_GET['check']) && ($_GET['check'] == "login")) ) {
+	if ((isset($_GET['login']) && ($_GET['login'] == "success")) ) {
 	header("Location: studente_home.php");
 	}	
 ?>
@@ -73,6 +73,8 @@ $docente = mysql_fetch_array($risultati);
 $numd = mysql_num_rows($risultati);
 
 if ( ($nums == 1) || ($numd == 1)) {
+
+$_GET['login']="success";
 		
 if ( $nums == 1) {		
 		@$_SESSION['login'] = "Yes";
@@ -136,16 +138,8 @@ else {
 
 //
 }
-// messaggi da far visualizzare per conferma login
 
-//controlli per il reindirizzamento
-if (@$_SESSION['role'] == 'studente') {
-	$url="studente_home.php";
-} elseif (@$_SESSION['role'] == 'docente') {
-	$url="docente_home.php";;
-} elseif (@$_SESSION['role'] == 'admin') {
-	$url="admin_home.php";
-}
+// messaggi da far visualizzare per conferma login
 
  		echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti $username login effettuato con successo.</b><p>&nbsp;</p></a>";
 }
