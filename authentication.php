@@ -17,7 +17,7 @@ include ('files/config.php');
 if ( (isset($_GET['check']) && ($_GET['check'] == "logout"))) {
 	header( "refresh:1;url=index.php" );
 	}	
-	if ((isset($_GET['check']) && ($_GET['check'] == "login")) && (isset($_SESSION['role']) && ($_SESSION['role'] == 'studente'))) {
+	if ((isset($_GET['check']) && ($_GET['check'] == "login")) ) {
 	header("Location: studente_home.php");
 	}	
 ?>
