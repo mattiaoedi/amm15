@@ -228,6 +228,7 @@ else
 	}
 ?>
 <?php
+//page login gestita in modo di verso perchè il php non è ricorsivo e nella pagina uso altri echo
 if ( isset($_GET['page']) && $_GET['page'] == "login" ) {
 $get_url = $_SERVER['REQUEST_URI'];	
 ?>
