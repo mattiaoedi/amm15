@@ -69,7 +69,7 @@ $numd = mysql_num_rows($risultati);
 if ( ($nums == 1) || ($numd == 1)) {
 		session_start();
 if ( $nums == 1) {		
-		@$_SESSION['login'] = "Yes";
+		@$_SESSION['login'] = "yes";
 		@$_SESSION['id'] = $studente['id'];
 		@$_SESSION['role'] = $studente['role'];
 		@$_SESSION['nome'] = $studente['nome'];
