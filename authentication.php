@@ -17,7 +17,7 @@ include ('files/config.php');
 if ( (isset($_GET['check']) && ($_GET['check'] == "logout"))) {
 	header( "refresh:1;url=index.php" );
 	}	
-	if ((isset($_GET['login']) && ($_GET['login'] == "success")) ) {
+	if ((isset($_SESSION['login']) && ($_SESSION['login'] == "Yes")) ) {
 	header("Location: studente_home.php");
 	}	
 ?>
@@ -73,8 +73,6 @@ $docente = mysql_fetch_array($risultati);
 $numd = mysql_num_rows($risultati);
 
 if ( ($nums == 1) || ($numd == 1)) {
-
-$_GET['login']="success";
 		
 if ( $nums == 1) {		
 		@$_SESSION['login'] = "Yes";
