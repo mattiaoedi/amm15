@@ -1,16 +1,49 @@
 <?php
 session_start();
+if (isset($_SESSION['studente']) )
+$_SESSION['studente'] = '';
+if (isset($_SESSION['docente']) )
+$_SESSION['docente'] = '';
+if (isset($_SESSION['id_appello']) )
+$_SESSION['id_appello'] = '';
+if (isset($_SESSION['id_esame']) )
+$_SESSION['id_esame'] = '';
+if (isset($_SESSION['id_dipartimento']) )
+$_SESSION['id_dipartimento'] = '';
+if (isset($_SESSION['id_corso']) )
+$_SESSION['id_corso'] = '';
+if (isset($_SESSION['id_insegnamento']) )
+$_SESSION['id_insegnamento'] = '';
+if (isset($_SESSION['id_edit']) )
 $_SESSION['id_edit'] = '';
+if (isset($_SESSION['role_edit']) )
 $_SESSION['role_edit'] = '';
+if (isset($_SESSION['nome_edit']) )
 $_SESSION['nome_edit']= '';
+if (isset($_SESSION['cognome_edit']) )
 $_SESSION['cognome_edit'] = '';
+if (isset($_SESSION['via_edit']) )
 $_SESSION['via_edit'] = '';
+if (isset($_SESSION['civico_edit']) )
 $_SESSION['civico_edit'] = '';
+if (isset($_SESSION['citta_edit']) )
 $_SESSION['citta_edit'] = '';
+if (isset($_SESSION['provincia_edit']) )
 $_SESSION['provincia_edit'] = '';
+if (isset($_SESSION['cap_edit']) )
 $_SESSION['cap_edit'] = '';
+if (isset($_SESSION['email_edit']) )
 $_SESSION['email_edit'] = '';
+if (isset($_SESSION['ricevimento_edit']) )
 $_SESSION['ricevimento_edit'] = '';
+if (isset($_SESSION['nome_reg']) )
+$_SESSION['nome_reg'] == '';
+if (isset($_SESSION['cognome_reg']) )
+$_SESSION['cognome_reg'] == '';
+if (isset($_SESSION['corso_reg']) )
+$_SESSION['corso_reg'] == '';
+if (isset($_SESSION['email_reg']) )
+$_SESSION['email_reg'] == '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
@@ -34,13 +67,12 @@ include ('files/config.php');
 <?php include 'include/lside.htm'; ?>
 <? 
 //controllo admin
-if ($_SESSION['login'] == "yes" && $_SESSION['role'] == "admin") {
-?>
+if ((isset($_SESSION['login']) && $_SESSION['login'] == "yes") && (isset($_SESSION['role']) && $_SESSION['role'] == "admin") ) {?>
 <page class="content">
     <section>
       <h2 class="icona" id="areap">Area gestione</h2>
-      <p>Benvenuto, <? echo $_SESSION['nome'] ?>.</p>
-      <p>Benvenuto nella tua area riservata!</p>
+      <p>Benvenuto, <? if (isset($_SESSION['nome']) ) echo $_SESSION['nome'] ?>.</p>
+      <p>Benvenuto nell'area privata di gestione come amministratore!</p>
 	  <div class="box_link">
       <p><center><li><a href="admin_studenti.php" id="anagrafica">Studenti</a></li>
 					<li><a href="admin_docenti.php" id="anagrafica">Docenti</a></li>
@@ -62,7 +94,7 @@ if ($_SESSION['login'] == "yes" && $_SESSION['role'] == "admin") {
     <li><strong>Dipartimenti e corsi di laurea</strong> per modificare i dati sui dipartimenti e corsi di Laurea.</li>
   </rside>
 <?
-} elseif ($_SESSION['login'] != "Yes") {
+} elseif (isset($_SESSION['login']) && $_SESSION['login'] != "yes") {
 
 	
 echo "<page class='content'><section><center><img src='files/img/no.png' width='32' height='32' alt='accesso negato'style='vertical-align:middle;' /><b>Accesso non autorizzato.</b><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a><p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='registrati' value='registrati'/></a></center></section></page>
