@@ -134,10 +134,15 @@ elseif (isset($_SESSION['cap']))
 $cap = $_SESSION['cap'];
 else $cap='';
 
+if (isset($_POST['via']))
 $via = mysql_real_escape_string($via);
+if (isset($_POST['civico']))
 $civico = mysql_real_escape_string($civico);
+if (isset($_POST['citta']))
 $citta = mysql_real_escape_string($citta);
+if (isset($_POST['provincia']))
 $provincia = mysql_real_escape_string($password);
+if (isset($_POST['cap']))
 $cap = mysql_real_escape_string($cap);
 
 mysql_query("UPDATE studenti SET via = '$via', civico = '$civico', citta = '$citta', provincia = '$provincia', cap = '$cap' WHERE id = '$id_studente'") OR DIE(mysql_error());
