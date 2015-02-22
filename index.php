@@ -86,7 +86,7 @@ else
     <section>
      <h2>Login</h2>
       <p>
-<form action="authentication.php?check=login" method="post">
+<form action="?check=login" method="post">
 
 	<p><b>Nome Utente</b><br />
 	<input type="text" name="username" id="username"/>
@@ -275,13 +275,141 @@ else
 	$admin = @$_GET['admin'];
 
 	
-	echo @$pagine[$page] ;
-	echo @$pagine_2[$studente] ;
-	echo @$pagine_3[$docente] ;
-	echo @$pagine_4[$admin] ;
+	echo $pagine[$page] ;
+	echo $pagine_2[$studente] ;
+	echo $pagine_3[$docente] ;
+	echo $pagine_4[$admin] ;
 	
 	}
 ?>
+
+<?php
+/*login*/
+// attraverso un if controlliamo che il form sia stato inviato
+if ( isset($_GET['check']) && $_GET['check'] == "login" ) {
+
+// recuperiamo i dati inviati con il form
+
+$username = @$_POST['username'];
+
+$password = @$_POST['password'];
+
+// ora controlliamo che i campi siano stati tutti compilati
+
+if ( $username == TRUE && $password == TRUE)  {
+
+$username = mysql_real_escape_string($username);
+$password = mysql_real_escape_string($password);	
+$crypt_pass = md5($password);
+
+$risultati = mysql_query("SELECT * FROM studenti WHERE username = '$username' AND password = '$crypt_pass'") OR DIE(mysql_error());
+
+$studente = mysql_fetch_array($risultati);
+
+$nums = mysql_num_rows($risultati);
+
+$risultati = mysql_query("SELECT * FROM docenti WHERE username = '$username' AND password = '$crypt_pass'");
+
+$docente = mysql_fetch_array($risultati);
+
+$numd = mysql_num_rows($risultati);
+
+if ( ($nums == 1) || ($numd == 1)) {
+		session_start();
+if ( $nums == 1) {		
+		@$_SESSION['login'] = "yes";
+		@$_SESSION['id'] = $studente['id'];
+		@$_SESSION['role'] = $studente['role'];
+		@$_SESSION['nome'] = $studente['nome'];
+		@$_SESSION['cognome'] = $studente['cognome'];
+		@$_SESSION['corso'] = $studente['corso'];
+		@$_SESSION['via'] = $studente['via'];
+		@$_SESSION['civico'] = $studente['civico'];
+		@$_SESSION['citta'] = $studente['citta'];
+		@$_SESSION['provincia'] = $studente['provincia'];
+		@$_SESSION['cap'] = $studente['cap'];
+		@$_SESSION['email'] = $studente['email'];
+		@$_SESSION['username'] = $studente['username'];
+		@$_SESSION['password'] = $studente['password'];
+		@$_SESSION['data'] = $studente['data'];
+		
+//ricavo dati diparimento
+	$corso=@$_SESSION['corso'];
+	$risultati = mysql_query("SELECT dipartimento FROM corsi WHERE id = '$corso' ");
+	$diparimento = mysql_fetch_array($risultati);
+	$num = mysql_num_rows($risultati);
+
+	if ( $num == 1) {
+	$id_dipartimento = $diparimento['id'];
+	$risultati = mysql_query("SELECT id, nome FROM corsi WHERE id = '$id_dipartimento' ") OR DIE(mysql_error());
+	$diparimento = mysql_fetch_array($risultati);
+
+		@$_SESSION['diparimento'] = $diparimento['id'];
+		@$_SESSION['nome_diparimento'] = $diparimento['nome'];
+		header("Location: studente_home.php");
+	}		
+} else {
+
+		@$_SESSION['login'] = "yes";
+		@$_SESSION['id'] = $docente['id'];
+		@$_SESSION['role'] = $docente['role'];
+		@$_SESSION['nome'] = $docente['nome'];
+		@$_SESSION['cognome'] = $docente['cognome'];
+		@$_SESSION['dipartimento'] = $docente['dipartimento'];
+		@$_SESSION['corso'] = $docente['corso'];
+		@$_SESSION['via'] = $docente['via'];
+		@$_SESSION['civico'] = $docente['civico'];
+		@$_SESSION['citta'] = $docente['citta'];
+		@$_SESSION['provincia'] = $docente['provincia'];
+		@$_SESSION['cap'] = $docente['cap'];
+		@$_SESSION['email'] = $docente['email'];
+		@$_SESSION['ricevimento'] = $docente['ricevimento'];
+		@$_SESSION['username'] = $docente['username'];
+		@$_SESSION['password'] = $docente['password'];
+		@$_SESSION['data'] = $docente['data'];
+
+//ricavo dati insegnamento	
+	$id = @$_SESSION['id'];
+	$risultati = mysql_query("SELECT * FROM insegnamenti WHERE docente = '$id' ");
+	$insegnamento = mysql_fetch_array($risultati);
+	$num = mysql_num_rows($risultati);
+
+	if ( $num == 1) {
+		@$_SESSION['id_insegnamento'] = $insegnamento['id'];
+		@$_SESSION['nome_insegnamento'] = $insegnamento['nome'];
+	}
+
+//reindirizzamento
+    if ($docente['role'] = "docente") {
+		
+	header("Location: docente_home.php");	
+	
+	} elseif ($docente['role'] = "admin") {
+		
+	header("Location: admin_home.php");	
+	}
+}
+
+// messaggi da far visualizzare per conferma login
+
+ 		echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti $username login effettuato con successo.</b><p>&nbsp;</p></a>";
+}
+
+else {
+
+echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;' /><b>Username o password sbagliati</b>";
+
+}
+
+} else {
+
+echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;' /><b>Username o password mancanti.</b>";
+
+}
+
+}
+?>
+
 <?php
 //page registrazione gestita in modo di verso perchè il php non è ricorsivo e nella pagina uso altri echo
 if (@$_GET['page'] == "registrazione" ) {
@@ -293,11 +421,11 @@ if (@$_GET['page'] == "registrazione" ) {
 <form action="authentication.php?check=registrazione" method="post" name="registrazione">
 
 	<p><b>Nome</b><br />
-	<input type="text" name="nome"/>
+	<input type="text" name="nome" value="<? echo $_SESSION['nome_reg']?>"/>
 	</p>
     
 	<p><b>Cognome</b><br />
-	<input type="text" name="cognome"/>
+	<input type="text" value="<? echo $_SESSION['cognome_reg']?>"/>
 	</p>
     
 	<p><b>Corso</b><br />
@@ -314,7 +442,15 @@ if (@$_GET['page'] == "registrazione" ) {
 			$id_corso = mysql_result($corso,$i,'id');
             $nome = mysql_result($corso,$i,'nome');
 
-                echo "<option value='$id_corso'>$cognome $nome</option>";
+			if ( $id_corso == $_SESSION['cognome_reg'] ) {
+				
+                echo "<option value='$id_corso'selected >$nome</option>";
+				
+			} else {
+				
+				echo "<option value='$id_corso'>$nome</option>";
+				
+			}
 				
             $i++;
 			
@@ -325,7 +461,7 @@ if (@$_GET['page'] == "registrazione" ) {
 	</p>
       
 	<p><b>Email</b><br />
-	<input type="email" name="email"/>
+	<input type="email" name="email" value="<? echo $_SESSION['email_reg']?>"/>
 	</p>
     
 	<p><b>Password</b><br />
@@ -342,6 +478,101 @@ if (@$_GET['page'] == "registrazione" ) {
 	</p>
 
 </form>
+
+<?php
+/*registrazione*/
+//attraverso un if controlliamo che il form sia stato inviato
+if (  isset($_GET['check']) && $_GET['check'] == "registrazione" ) {
+
+//recuperiamo i dati inviati con il form
+$nome = ucwords($_POST['nome']);
+$cognome = ucwords($_POST['cognome']);
+$corso = ucwords($_POST['corso']);
+$email = $_POST['email'];
+$password = $_POST['password'];
+$controllo_pass = $_POST['controllo_pass'];
+
+$_SESSION['nome_reg'] = ucwords($_POST['nome']);
+$_SESSION['cognome_reg'] = ucwords($_POST['cognome']);
+$_SESSION['corso_reg'] = ucwords($_POST['corso']);
+$_SESSION['email_reg'] = $_POST['email'];
+
+//ora controlliamo che i campi siano stati tutti compilati
+if ( $nome == TRUE && $cognome == TRUE && $corso == TRUE && $password == TRUE && $controllo_pass == TRUE )  {
+
+//controlliamo se l'mail è presente già nel database
+$sql = mysql_query("SELECT * FROM studenti WHERE email = '$email'");
+
+$num = mysql_num_rows($sql);
+
+if ( $num == 0 ) {
+
+$num = null;
+
+$username = strtolower (substr($nome, 0, 2));
+$username .= ".";
+$username .= strtolower ($cognome);
+$username .= rand(0,99); 
+
+//controlliamo se il nome utente generato è presente già nel database
+
+$sql = mysql_query("SELECT * FROM studenti WHERE username = '$username'");
+
+$num = mysql_num_rows($sql);
+
+if ( $num == 0 ) {
+
+//ora controlliamo che le password inserite siano identiche
+
+if ( $password == $controllo_pass ) {
+
+$nome = mysql_real_escape_string($nome);
+$cognome = mysql_real_escape_string($cognome);
+$corso = mysql_real_escape_string($corso);
+$username = mysql_real_escape_string($username);
+$password = mysql_real_escape_string($password);
+//infine criptiamo la password con md5
+$crypt_pass = md5($password);
+
+mysql_query("INSERT INTO studenti
+             (id, role, nome, cognome, corso, via, civico, citta, provincia, cap, email, username, password, data )
+             VALUES
+             ('', 'studente', '$nome', '$cognome', '$corso', '', '', '', '', '', '$email', '$username', '$crypt_pass', CURRENT_TIMESTAMP )") OR DIE(mysql_error());
+
+//inviamo una mail con la riuscita registazione FUNZIONE NON ATTIVA
+@mail ($mail, "Registrazione OK", "Complimenti registrazione presso il portale amm 15 effettuata con successo.<br />Ricordiamo che le credeziali di accesso sono:<br />Nome utente:$username<br />Password:$password<br /><br />In caso smarriate una delle tue vi invitiamo a contattare l'amministratore.", "From: registrazioni@amm15.net");
+
+
+echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;'/><b>Complimenti registrazione effettuata con successo.</b><br />Il tuo nome utente per l'accesso è <b>$username</b>.";
+
+} else {
+
+echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;' /><b>Le password non corrispondono.</b>";
+
+}
+
+} else {
+
+echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;'/><b>Nome utente già utilizzato.</b>";
+
+}
+
+} else {
+
+echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;'/><b>Indirizzo email già utilizzato.";
+
+}
+
+} else {
+
+echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;'/><b>Tutti i campi sono obbligatori.";
+
+}
+
+}
+
+?>
+
 </p>
     </section>
   <!-- end .content --></page>
