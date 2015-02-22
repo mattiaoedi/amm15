@@ -425,7 +425,7 @@ if (@$_GET['page'] == "registrazione" ) {
 	</p>
     
 	<p><b>Cognome</b><br />
-	<input type="text" value="<? echo $_SESSION['cognome_reg']?>"/>
+	<input type="text" value="<? if (isset($_SESSION['cognome_reg'])) echo $_SESSION['cognome_reg'];?>"/>
 	</p>
     
 	<p><b>Corso</b><br />
@@ -442,7 +442,7 @@ if (@$_GET['page'] == "registrazione" ) {
 			$id_corso = mysql_result($corso,$i,'id');
             $nome = mysql_result($corso,$i,'nome');
 
-			if ( $id_corso == $_SESSION['cognome_reg'] ) {
+			if ( $id_corso == $_SESSION['corso_reg'] ) {
 				
                 echo "<option value='$id_corso'selected >$nome</option>";
 				
@@ -461,7 +461,7 @@ if (@$_GET['page'] == "registrazione" ) {
 	</p>
       
 	<p><b>Email</b><br />
-	<input type="email" name="email" value="<? echo $_SESSION['email_reg']?>"/>
+	<input type="email" name="email" value="<? if (isset($_SESSION['email_reg'])) echo $_SESSION['email_reg'];?>"/>
 	</p>
     
 	<p><b>Password</b><br />
