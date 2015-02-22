@@ -412,7 +412,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 
 <?php
 //page registrazione gestita in modo di verso perchè il php non è ricorsivo e nella pagina uso altri echo
-if (@$_GET['page'] == "registrazione" ) {
+if (  isset($_GET['page']) && $_GET['page'] == "registrazione" ) {
 ?>
 <page class="content">
 	<section>
@@ -482,7 +482,7 @@ if (@$_GET['page'] == "registrazione" ) {
 <?php
 /*registrazione*/
 //attraverso un if controlliamo che il form sia stato inviato
-if (  $_GET['check'] == "registrazione" ) {
+if (  isset($_GET['check']) && $_GET['check'] == "registrazione" ) {
 
 //recuperiamo i dati inviati con il form
 $nome = ucwords($_POST['nome']);
