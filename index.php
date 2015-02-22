@@ -34,7 +34,7 @@ include ('files/config.php');
 </div>
 <?php include 'include/lside.htm'; ?>
 <?php 
-	  if(!@$_GET)
+	  if(!$_GET)
 {
 ?>
 <page class="content">
@@ -81,37 +81,7 @@ include ('files/config.php');
 }
 else
 {
-    $pagine = array(
-	'login'=>'<page class="content">
-    <section>
-     <h2>Login</h2>
-      <p>
-<form action="?check=login" method="post">
-
-	<p><b>Nome Utente</b><br />
-	<input type="text" name="username" id="username"/>
-	</p>
-   
-	<p><b>Password</b><br />
-	<input type="password" name="password" id="password"/>
-	</p>
-  
-	<p>
-	<input id="button" type="submit" alt="login" value="login"/>
-	<br />
-	</p>
-
-</form>
-</p>
-    </section>
-  <!-- end .content --></page>
-  <rside>
-    <h2>Informazioni</h2>
-    <p>Accesso al portale amm15</p>
-  </rside>',
-	
-	'registrazione'=>'',
-	
+    $pagine = array( 	
 	'offerta'=>'<page class="content">
     <section>
      <h2>Offerta formativa</h2>
@@ -254,7 +224,40 @@ else
 	
 	}
 ?>
+<?php
+if ( isset($_GET['page']) && $_GET['page'] == "login" ) {
+$get_url = $_SERVER['REQUEST_URI'];	
+?>
+	'login'=>'<page class="content">
+    <section>
+     <h2>Login</h2>
+      <p>
+<form action="'<? echo $get_url ?>'&check=login" method="post">
 
+	<p><b>Nome Utente</b><br />
+	<input type="text" name="username" id="username"/>
+	</p>
+   
+	<p><b>Password</b><br />
+	<input type="password" name="password" id="password"/>
+	</p>
+  
+	<p>
+	<input id="button" type="submit" alt="login" value="login"/>
+	<br />
+	</p>
+
+</form>
+</p>
+    </section>
+  <!-- end .content --></page>
+  <rside>
+    <h2>Informazioni</h2>
+    <p>Accesso al portale amm15</p>
+  </rside>',
+<?php
+}
+?>
 <?php
 /*login*/
 // attraverso un if controlliamo che il form sia stato inviato
