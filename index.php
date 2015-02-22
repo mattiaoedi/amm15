@@ -475,7 +475,7 @@ if (isset($_POST['controllo_pass']))
 $controllo_pass = $_POST['controllo_pass'];
 
 //ora controlliamo che i campi siano stati tutti compilati
-if ( $nome == TRUE && $cognome == TRUE && $corso == TRUE && $password == TRUE && $controllo_pass == TRUE )  {
+if ( isset($nome)  && isset($cognome) && isset($corso) && isset($password) && isset($controllo_pass)  )  {
 
 //controlliamo se l'mail è presente già nel database
 $sql = mysql_query("SELECT * FROM studenti WHERE email = '$email'");
