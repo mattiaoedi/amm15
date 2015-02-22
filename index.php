@@ -266,13 +266,15 @@ $get_url = $_SERVER['REQUEST_URI'];
 /*login*/
 // attraverso un if controlliamo che il form sia stato inviato
 if ( isset($_GET['check']) && $_GET['check'] == "login" ) {
-
-// ora controlliamo che i campi siano stati tutti compilati
-if ( $_POST['username'] == TRUE && $_POST['password'] == TRUE)  {
 	
 // recuperiamo i dati inviati con il form
+if ( isset($_POST['username']))
 $username = $_POST['username'];
-$password = $_POST['password'];	
+if ( isset($_POST['password']))
+$password = $_POST['password'];		
+
+// ora controlliamo che i campi siano stati tutti compilati
+if ( $username == TRUE && $password == TRUE)  {
 
 $username = mysql_real_escape_string($username);
 $password = mysql_real_escape_string($password);	
