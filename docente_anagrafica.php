@@ -1,20 +1,54 @@
 <?php
 session_start();
-@$_SESSION['id_edit'] = '';
-@$_SESSION['role_edit'] = '';
-@$_SESSION['nome_edit']= '';
-@$_SESSION['cognome_edit'] = '';
-@$_SESSION['via_edit'] = '';
-@$_SESSION['civico_edit'] = '';
-@$_SESSION['citta_edit'] = '';
-@$_SESSION['provincia_edit'] = '';
-@$_SESSION['cap_edit'] = '';
-@$_SESSION['email_edit'] = '';
-@$_SESSION['ricevimento_edit'] = '';// includiamo il file di connessione al database
+if (isset($_SESSION['studente']) )
+$_SESSION['studente'] = '';
+if (isset($_SESSION['docente']) )
+$_SESSION['docente'] = '';
+if (isset($_SESSION['id_appello']) )
+$_SESSION['id_appello'] = '';
+if (isset($_SESSION['id_esame']) )
+$_SESSION['id_esame'] = '';
+if (isset($_SESSION['id_dipartimento']) )
+$_SESSION['id_dipartimento'] = '';
+if (isset($_SESSION['id_corso']) )
+$_SESSION['id_corso'] = '';
+if (isset($_SESSION['id_insegnamento']) )
+$_SESSION['id_insegnamento'] = '';
+if (isset($_SESSION['id_edit']) )
+$_SESSION['id_edit'] = '';
+if (isset($_SESSION['role_edit']) )
+$_SESSION['role_edit'] = '';
+if (isset($_SESSION['nome_edit']) )
+$_SESSION['nome_edit']= '';
+if (isset($_SESSION['cognome_edit']) )
+$_SESSION['cognome_edit'] = '';
+if (isset($_SESSION['via_edit']) )
+$_SESSION['via_edit'] = '';
+if (isset($_SESSION['civico_edit']) )
+$_SESSION['civico_edit'] = '';
+if (isset($_SESSION['citta_edit']) )
+$_SESSION['citta_edit'] = '';
+if (isset($_SESSION['provincia_edit']) )
+$_SESSION['provincia_edit'] = '';
+if (isset($_SESSION['cap_edit']) )
+$_SESSION['cap_edit'] = '';
+if (isset($_SESSION['email_edit']) )
+$_SESSION['email_edit'] = '';
+if (isset($_SESSION['ricevimento_edit']) )
+$_SESSION['ricevimento_edit'] = '';
+if (isset($_SESSION['nome_reg']) )
+$_SESSION['nome_reg'] == '';
+if (isset($_SESSION['cognome_reg']) )
+$_SESSION['cognome_reg'] == '';
+if (isset($_SESSION['corso_reg']) )
+$_SESSION['corso_reg'] == '';
+if (isset($_SESSION['email_reg']) )
+$_SESSION['email_reg'] == '';
+// includiamo il file di connessione al database
 include ('files/config.php');
 
 if ( (isset($_GET['edit']) && ($_GET['edit'] == "indirizzo")) || (isset($_GET['edit']) && ($_GET['edit'] == "contatti")) || (isset($_GET['edit']) && ($_GET['edit'] == "password"))) {
-	header( "refresh:1;url={$_SERVER['PHP_SELF']}" );
+	header( "refresh:2;url={$_SERVER['PHP_SELF']}" );
 	}
 	
     $url = basename($_SERVER['PHP_SELF']);
@@ -25,36 +59,6 @@ if ( (isset($_GET['edit']) && ($_GET['edit'] == "indirizzo")) || (isset($_GET['e
 <meta charset="utf-8">
 <title>amm15 - Università di Cagliari</title>
 <link href="files/css.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-var zero = new Array("Seleziona un dipartimento");
-var uno = new Array("Seleziona un corso", "Architettura", "Ingegneria delle telecomunicazioni", "Ingegneria ambientale");
-var due = new Array("Seleziona un corso", "Professioni sanitarie", "Medicina e chirurgia", "Odontoiatria");
-var tre = new Array("Seleziona un corso", "Fisica", "Informatica", "Matematica");
-
-function set_corso() {
-  var select_dipartimento = document.modifica.dipartimento;
-  var select_corso = document.modifica.corso;
-  var selected_dipartimento = select_dipartimento.options[select_dipartimento.selectedIndex].value;
-
-  select_corso.options.length=0;
-  if (selected_dipartimento == "Seleziona un dipartimento"){
-    for(var i=0; i<zero.length; i++)
-    select_corso.options[select_corso.options.length] = new Option(zero[i]);
-  }
-    if (selected_dipartimento == "Ingegneria e architettura"){
-    for(var i=0; i<uno.length; i++)
-    select_corso.options[select_corso.options.length] = new Option(uno[i]);
-  }
-  if (selected_dipartimento == "Medicina e chirurgia"){
-    for(var i=0; i<due.length; i++)
-    select_corso.options[select_corso.options.length] = new Option(due[i]);
-  }
-    if (selected_dipartimento == "Scienze"){
-    for(var i=0; i<tre.length; i++)
-    select_corso.options[select_corso.options.length] = new Option(tre[i]);
-  }
-
-}</script>
 </head>
 <body>
 <div class="container">
@@ -66,15 +70,14 @@ function set_corso() {
 <?php include 'include/lside.htm'; ?>
 <? 
 //controllo docente
-if (@$_SESSION['login'] == "Yes" && @$_SESSION['role'] == 'docente') {
-?>
+if ((isset($_SESSION['login']) && $_SESSION['login'] == "yes") && (isset($_SESSION['role']) && $_SESSION['role'] == "docente") ) {?>
   <page class="content">
     <section>
      <h2 class="icona" id="anagrafica-m">Dati personali</h2>
       <p>&nbsp;</p>
-      <p><strong>Nome: </strong> <? echo @$_SESSION['nome'] ?></p>
-      <p><strong>Cognome: </strong> <? echo @$_SESSION['cognome'] ?></p>
-      <p><strong>Insegnamento: </strong> <? echo @$_SESSION['insegnamento_nome'] ?></p>
+      <p><strong>Nome: </strong> <? if (isset($_SESSION['nome']) ) echo $_SESSION['nome'] ?></p>
+      <p><strong>Cognome: </strong> <? if (isset($_SESSION['cognome']) ) echo $_SESSION['cognome'] ?></p>
+      <p><strong>Insegnamento: </strong> <? if (isset($_SESSION['insegnamento_nome']) ) echo $_SESSION['insegnamento_nome'] ?></p>
       <hr width="100%" size="2" color="1c345a">
         <h3>Indirizzo</h3>
             <form method="post" action="<? $url ?>?edit=indirizzo">
@@ -93,48 +96,79 @@ if (@$_SESSION['login'] == "Yes" && @$_SESSION['role'] == 'docente') {
             </p>
             </p>
             <p><b>Via o piazza</b><br />
-            <input name="via" type="text" value="<? echo @$_SESSION['via'] ?>">
+            <input name="via" type="text" value="<? if (isset($_SESSION['via']) ) echo $_SESSION['via'] ?>">
             <br></p>
             <p><b>Numero civico</b><br />
-            <input name="civico" type="number" value="<? echo @$_SESSION['civico'] ?>">
+            <input name="civico" type="number" value="<? if (isset($_SESSION['civico']) ) echo $_SESSION['civico'] ?>">
             <br></p>
             <p><b>Città</b><br />
-            <input name="citta" type="text" value="<? echo @$_SESSION['citta'] ?>">
+            <input name="citta" type="text" value="<? if (isset($_SESSION['citta']) ) echo $_SESSION['citta'] ?>">
             <br></p>
             <p><b>Provincia</b><br />
-            <input name="provincia" type="text" value="<? echo @$_SESSION['provincia'] ?>">
+            <input name="provincia" type="text" value="<? if (isset($_SESSION['provincia']) ) echo $_SESSION['provincia'] ?>">
             <br></p>
             <p><b>Cap</b><br />
-            <input name="cap" type="number" value="<? echo @$_SESSION['cap'] ?>">
+            <input name="cap" type="number" value="<? if (isset($_SESSION['cap']) ) echo $_SESSION['cap'] ?>">
             <br></p>
             <p><input id="button" type="submit" alt="salva" value="salva"/>
             <br /></p>
             </form>
 <?php
 // attraverso un if controlliamo che il form sia stato inviato
-if ( @$_GET['edit'] == "indirizzo" ) {
+if (isset($_GET['edit']) && $_GET['edit'] == "indirizzo" ) {
 
-$id_docente=@$_SESSION['id'];
+if (isset($_SESSION['id']))
+$id_docente=$_SESSION['id'];
 // recuperiamo i dati inviati con il form
+if (isset($_POST['via']))
 $via = $_POST['via'];
+elseif (isset($_SESSION['via'])) 
+$via = $_SESSION['via'];
+else $via='';
+if (isset($_POST['civico']))
 $civico = $_POST['civico'];
+elseif (isset($_SESSION['civico'])) 
+$civico = $_SESSION['civico'];
+else $civico='';
+if (isset($_POST['citta']))
 $citta = $_POST['citta'];
+elseif (isset($_SESSION['citta'])) 
+$citta = $_SESSION['citta'];
+else $citta='';
+if (isset($_POST['provincia']))
 $provincia = $_POST['provincia'];
+elseif (isset($_SESSION['provincia'])) 
+$provincia = $_SESSION['provincia'];
+else $provincia='';
+if (isset($_POST['cap']))
 $cap = $_POST['cap'];
+elseif (isset($_SESSION['cap'])) 
+$cap = $_SESSION['cap'];
+else $cap=''; 
 
+if (isset($_POST['via']))
 $via = mysql_real_escape_string($via);
+if (isset($_POST['civico']))
 $civico = mysql_real_escape_string($civico);
+if (isset($_POST['citta']))
 $citta = mysql_real_escape_string($citta);
+if (isset($_POST['provincia']))
 $provincia = mysql_real_escape_string($password);
+if (isset($_POST['cap']))
 $cap = mysql_real_escape_string($cap);
 
 mysql_query("UPDATE docenti SET via = '$via', civico = '$civico', citta = '$citta', provincia = '$provincia', cap = '$cap' WHERE id = '$id_docente'") OR DIE(mysql_error());
 
-@$_SESSION['via'] = $via;
-@$_SESSION['civico'] = $civico;
-@$_SESSION['citta'] = $citta;
-@$_SESSION['provincia'] = $provincia;
-@$_SESSION['cap'] = $cap;
+if (isset($_SESSION['via']))
+$_SESSION['via'] = $via;
+if (isset($_SESSION['civico']))
+$_SESSION['civico'] = $civico;
+if (isset($_SESSION['citta']))
+$_SESSION['citta'] = $citta;
+if (isset($_SESSION['provincia']))
+$_SESSION['provincia'] = $provincia;
+if (isset($_SESSION['cap']))
+$_SESSION['cap'] = $cap;
 
 echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti modifica effettuata con successo.</b>";
 }
@@ -145,33 +179,44 @@ echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertica
             <h3>Contatti</h3>
             <form method="post" action="<? $url ?>?edit=contatti">
             <p><b>Email</b><br />
-            <input name="email" type="text" value="<? echo @$_SESSION['email'] ?>">
+            <input name="email" type="text" value="<? if (isset($_SESSION['email']) ) echo $_SESSION['email'] ?>">
             <br></p>
             <p><b>Ricevimento</b><br />
-            <input name="ricevimento" type="text" value="<? echo @$_SESSION['ricevimento'] ?>">
+            <input name="ricevimento" type="text" value="<? if (isset($_SESSION['ricevimento']) ) echo $_SESSION['ricevimento'] ?>">
             <br></p>
             <p><input id="button" type="submit" alt="salva" value="salva"/>
             <br /></p>
             </form>
 <?php
 // attraverso un if controlliamo che il form sia stato inviato
-if ( @$_GET['edit'] == "contatti" ) {
+if (isset($_GET['edit']) && $_GET['edit'] == "contatti" ) {
 
-$id_docente=@$_SESSION['id'];
+if (isset($_SESSION['id']))
+$id_docente=$_SESSION['id'];
 // recuperiamo i dati inviati con il form
+if (isset($_POST['email']))
 $email = $_POST['email'];
+elseif (isset($_SESSION['email'])) 
+$email = $_SESSION['email'];
+else $email='';
+if (isset($_POST['ricevimento']))
 $ricevimento = $_POST['ricevimento'];
+elseif (isset($_SESSION['ricevimento'])) 
+$ricevimento = $_SESSION['ricevimento'];
+else $ricevimento='';
 
-$sql = mysql_query("SELECT * FROM docenti WHERE email = '$email'");
+$risultati = mysql_query("SELECT * FROM docenti WHERE email = '$email'");
 
-$num = mysql_num_rows($sql);
+$num = mysql_num_rows($risultati);
 
 if ( $num == 0 ) {
 
 mysql_query("UPDATE docenti SET email = '$email', ricevimento = '$ricevimento' WHERE id = '$id_docente'") OR DIE(mysql_error());
 
-@$_SESSION['email'] = $email;
-@$_SESSION['ricevimento'] = $ricevimento;
+if (isset($_SESSION['email']))
+$_SESSION['email'] = $email;
+if (isset($_SESSION['ricevimento']))
+$_SESSION['ricevimento'] = $ricevimento;
 
 echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti modifica effettuata con successo.</b>";
 
@@ -197,12 +242,17 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
             </form>
 <?php
 // attraverso un if controlliamo che il form sia stato inviato
-if ( @$_GET['edit'] == "password" ) {
+if (isset($_GET['edit']) && $_GET['edit'] == "password" ) {
 
-$id_docente=@$_SESSION['id'];
+if (isset($_SESSION['id']))
+$id_docente=$_SESSION['id'];
 // recuperiamo i dati inviati con il form
+if (isset($_POST['password']))
 $password = $_POST['password'];
+else $password ="";
+if (isset($_POST['controllo_pass']))
 $controllo_pass = $_POST['controllo_pass'];
+else $controllo_pass ="";
 
 if ( $password == $controllo_pass ) {
 
@@ -234,8 +284,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
     </ul>
   </rside>
 <?
-} elseif (@$_SESSION['login'] != "Yes") {
-
+} elseif (isset($_SESSION['login']) && $_SESSION['login'] != "yes") {
 	
 echo "<page class='content'><section><center><img src='files/img/no.png' width='32' height='32' alt='accesso negato'style='vertical-align:middle;' /><b>Accesso non autorizzato.</b><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a><p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='registrati' value='registrati'/></a></center></section></page>
 	<rside>
