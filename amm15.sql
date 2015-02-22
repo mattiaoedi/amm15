@@ -227,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `studenti` (
 --
 
 INSERT INTO `studenti` (`id`, `role`, `nome`, `cognome`, `corso`, `via`, `civico`, `citta`, `provincia`, `cap`, `email`, `username`, `password`, `data`) VALUES
-(1, 'studente', 'Mattia', 'Sarritzu', 8, '', '', '', '', '', 'ma.sarritzu@amm15.net', 'ma.sarritzu1', 'd41d8cd98f00b204e9800998ecf8427e', '2015-02-19 13:00:00');
+(1, 'studente', 'Mattia', 'Sarritzu', 8, '', '', '', '', '', 'ma.sarritzu@amm15.net', 'ma.sarritzu1', '202cb962ac59075b964b07152d234b70', '2015-02-19 13:00:00');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
