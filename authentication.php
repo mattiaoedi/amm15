@@ -14,16 +14,6 @@ session_start();
 // includiamo il file di connessione al database
 include ('files/config.php');
 
-	/*if ((isset($_SESSION['login']) && ($_SESSION['login'] == "yes")) ) {
-		if ((isset($_SESSION['role']) && ($_SESSION['role'] == "studente")) ) {
-	header("Location: studente_home.php");
-		} if ((isset($_SESSION['role']) && ($_SESSION['role'] == "docente")) ) {
-			header("Location: docente_home.php");
-		}
-		if ((isset($_SESSION['role']) && ($_SESSION['role'] == "admin")) ) {
-			header("Location: admin_home.php");
-		}
-	}*/
 ?>
 <!doctype html>
 <html>
@@ -109,12 +99,8 @@ if ( $nums == 1) {
 		@$_SESSION['diparimento'] = $diparimento['id'];
 		@$_SESSION['nome_diparimento'] = $diparimento['nome'];
 		header("Location: studente_home.php");
-	}
-//
-
-		
-} 
-else {
+	}		
+} else {
 
 		@$_SESSION['login'] = "yes";
 		@$_SESSION['id'] = $docente['id'];
@@ -145,7 +131,15 @@ else {
 		@$_SESSION['nome_insegnamento'] = $insegnamento['nome'];
 	}
 
-//
+//reindirizzamento
+    if ($docente['role'] = "docente") {
+		
+	header("Location: docente_home.php");	
+	
+	} elseif ($docente['role'] = "admin") {
+		
+	header("Location: admin_home.php");	
+	}
 }
 
 // messaggi da far visualizzare per conferma login
