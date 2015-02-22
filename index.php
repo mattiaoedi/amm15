@@ -257,7 +257,7 @@ $get_url = $_SERVER['REQUEST_URI'];
   <rside>
     <h2>Informazioni</h2>
     <p>Accesso al portale amm15</p>
-  </rside>',
+  </rside>
 <?php
 }
 ?>
