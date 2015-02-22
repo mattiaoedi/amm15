@@ -1,21 +1,54 @@
 <?php
 session_start();
-@$_SESSION['id_edit'] = '';
-@$_SESSION['role_edit'] = '';
-@$_SESSION['nome_edit']= '';
-@$_SESSION['cognome_edit'] = '';
-@$_SESSION['via_edit'] = '';
-@$_SESSION['civico_edit'] = '';
-@$_SESSION['citta_edit'] = '';
-@$_SESSION['provincia_edit'] = '';
-@$_SESSION['cap_edit'] = '';
-@$_SESSION['email_edit'] = '';
-@$_SESSION['ricevimento_edit'] = '';
+if (isset($_SESSION['studente']) )
+$_SESSION['studente'] = '';
+if (isset($_SESSION['docente']) )
+$_SESSION['docente'] = '';
+if (isset($_SESSION['id_appello']) )
+$_SESSION['id_appello'] = '';
+if (isset($_SESSION['id_esame']) )
+$_SESSION['id_esame'] = '';
+if (isset($_SESSION['id_dipartimento']) )
+$_SESSION['id_dipartimento'] = '';
+if (isset($_SESSION['id_corso']) )
+$_SESSION['id_corso'] = '';
+if (isset($_SESSION['id_insegnamento']) )
+$_SESSION['id_insegnamento'] = '';
+if (isset($_SESSION['id_edit']) )
+$_SESSION['id_edit'] = '';
+if (isset($_SESSION['role_edit']) )
+$_SESSION['role_edit'] = '';
+if (isset($_SESSION['nome_edit']) )
+$_SESSION['nome_edit']= '';
+if (isset($_SESSION['cognome_edit']) )
+$_SESSION['cognome_edit'] = '';
+if (isset($_SESSION['via_edit']) )
+$_SESSION['via_edit'] = '';
+if (isset($_SESSION['civico_edit']) )
+$_SESSION['civico_edit'] = '';
+if (isset($_SESSION['citta_edit']) )
+$_SESSION['citta_edit'] = '';
+if (isset($_SESSION['provincia_edit']) )
+$_SESSION['provincia_edit'] = '';
+if (isset($_SESSION['cap_edit']) )
+$_SESSION['cap_edit'] = '';
+if (isset($_SESSION['email_edit']) )
+$_SESSION['email_edit'] = '';
+if (isset($_SESSION['ricevimento_edit']) )
+$_SESSION['ricevimento_edit'] = '';
+if (isset($_SESSION['nome_reg']) )
+$_SESSION['nome_reg'] == '';
+if (isset($_SESSION['cognome_reg']) )
+$_SESSION['cognome_reg'] == '';
+if (isset($_SESSION['corso_reg']) )
+$_SESSION['corso_reg'] == '';
+if (isset($_SESSION['email_reg']) )
+$_SESSION['email_reg'] == '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
 if ( (isset($_GET['add']) && ($_GET['add'] == "appello")) || (isset($_GET['show']) && ($_GET['show'] == $id_appello)) || (isset($_GET['edit']) && ($_GET['edit'] == $id_appello)) || (isset($_GET['delete']) && ($_GET['delete'] == $id_appello))){
-	header( "refresh:1;url={$_SERVER['PHP_SELF']}" );
+	header( "refresh:2;url={$_SERVER['PHP_SELF']}" );
 	}
 	
 $url = basename($_SERVER['PHP_SELF']);	
@@ -37,15 +70,14 @@ $url = basename($_SERVER['PHP_SELF']);
 </div>
 <?php include 'include/lside.htm'; ?>
 <? 
-//controllo docente
-if (@$_SESSION['login'] == "Yes" && @$_SESSION['role'] == 'admin') {
-?>
+//controllo admin
+if ((isset($_SESSION['login']) && $_SESSION['login'] == "yes") && (isset($_SESSION['role']) && $_SESSION['role'] == "admin") ) {?>
 <page class="content">
   <section>
         <h2 class="icona" id="esame-m">Appelli</h2>
     <p>&nbsp;</p>
-    <p><strong>Nome: </strong> <? echo @$_SESSION['nome'] ?></p>
-    <p><strong>Cognome: </strong> <? echo @$_SESSION['cognome'] ?></p>
+      <p><strong>Nome: </strong> <? if (isset($_SESSION['nome']) ) echo $_SESSION['nome'] ?></p>
+      <p><strong>Cognome: </strong> <? if (isset($_SESSION['cognome']) ) echo $_SESSION['cognome'] ?></p>
     <p><strong>Gestione come amministratore</strong></p>
     <hr width="100%" size="2" color="1c345a">
     <h3>Crea nuovo appello</h3>
@@ -95,9 +127,15 @@ if ( @$_GET['add'] == "appello" ) {
 
 // recuperiamo i dati inviati con il form
 
+if ( isset($_POST['insegnamento']))
 $insegnamento = $_POST['insegnamento'];
+else $insegnamento = '';
+if ( isset($_POST['data']))
 $data = $_POST['data'];
+else $data = '';
+if ( isset($_POST['posti']))
 $posti = $_POST['posti'];
+else $posti = '';
 
 if ( $insegnamento == TRUE && $data == TRUE && $posti == TRUE){
 
@@ -181,10 +219,12 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 			$i=0;
             while ($i < $num) {
 			
-			if ( @$_GET['show'] == (mysql_result($appelli,$i,'id')) ) {
+			if ( isset($_GET['show']) && $_GET['show'] == (mysql_result($appelli,$i,'id')) ) {
 				
+				if ( isset($_GET['show'])) {
 				$id_appello = @$_GET['show'];
-				@$_SESSION['id_appello'] = $id_appello;
+				$_SESSION['id_appello'] = $id_appello;
+				}
 				
 				}
 				
@@ -195,7 +235,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 //attraverso un if controlliamo che il form sia stato inviato
 
-if ( @$_GET['show'] == $id_appello ) {
+if ( isset($_GET['show']) && $_GET['show'] == $id_appello ) {
 
 	$get_url = $_SERVER['REQUEST_URI'];
 
@@ -230,18 +270,23 @@ echo '<p>&nbsp;</p>
 <?php
 //attraverso un if controlliamo che il form sia stato inviato
 
-if ( @$_GET['edit'] == "appello" ) {
-
-$id_appello = @$_SESSION['id_appello'];		
+if ( isset($_GET['edit']) && $_GET['edit'] == "appello" ) {
+	
+if ( isset($_SESSION['id_appello']))
+$id_appello = $_SESSION['id_appello'];		
 //recuperiamo i dati inviati con il form
+if ( isset($_POST['data']))
 $data = $_POST['data'];
+else $data = '';
+if ( isset($_POST['posti']))
 $posti = $_POST['posti'];
+else $posti = '';
 
 if ( $insegnamento == TRUE && $data == TRUE && $posti == TRUE){
 
 mysql_query("UPDATE appelli SET data = '$data', posti = '$posti' WHERE id = '$id_appello'") OR DIE(mysql_error());
 
-@$_SESSION['id_appello'] = '';
+$_SESSION['id_appello'] = '';
 
 echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti modifica effettuata con successo.</b><p>&nbsp;</p>";
 
@@ -250,9 +295,10 @@ echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertica
 echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertical-align:middle;' /><b>Tutti i campi sono obbligatori.</b><p>&nbsp;</p>";
 
 }
-} elseif ( @$_GET['delete'] == $id_appello ) {
-	
-$id_appello = @$_GET['delete'];
+} elseif ( isset($_GET['delete']) && $_GET['delete'] == $id_appello ) {
+
+if(isset($_GET['delete']))
+$id_appello = $_GET['delete'];
 
 mysql_query("DELETE FROM appelli WHERE id = '$id_appello'") OR DIE(mysql_error());
 
@@ -275,7 +321,7 @@ echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertica
     <p>Per l'inserimento e la modifica è necessario specificare solo la data ed i posti disponibili.</p>
   </rside>
 <?
-} elseif (@$_SESSION['login'] != "Yes") {
+} elseif (isset($_SESSION['login']) && $_SESSION['login'] != "yes") {
 
 	
 echo "<page class='content'><section><center><img src='files/img/no.png' width='32' height='32' alt='accesso negato'style='vertical-align:middle;' /><b>Accesso non autorizzato.</b><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a><p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='registrati' value='registrati'/></a></center></section></page>
