@@ -387,11 +387,11 @@ if ( $nums == 1) {
 	}
 
 //reindirizzamento
-    if (isset($_SESSION['role']) && $_SESSION['role'] = "docente") {
+    if ($docente['role'] == "docente") {
 		
 	header("Location: docente_home.php");	
 	
-	} elseif (isset($_SESSION['role']) && $_SESSION['role'] = "admin") {
+	} elseif ($docente['role'] == "admin") {
 		
 	header("Location: admin_home.php");	
 	}
