@@ -17,6 +17,9 @@ include ('files/config.php');
 if ( (isset($_GET['check']) && ($_GET['check'] == "logout"))) {
 	header( "refresh:1;url=index.php" );
 	}	
+	if (isset($_SESSION['role']) && ($_SESSION['role'] == 'studente')) {
+	header("Location: /studente_home.php");
+	}	
 ?>
 <!doctype html>
 <html>
@@ -41,7 +44,7 @@ if ( (isset($_GET['check']) && ($_GET['check'] == "logout"))) {
 /*login*/
 // attraverso un if controlliamo che il form sia stato inviato
 
-if ( @$_GET['check'] == "login" ) {
+if ( isset($_GET['check']) && $_GET['check'] == "login" ) {
 
 // recuperiamo i dati inviati con il form
 
@@ -144,7 +147,7 @@ if (@$_SESSION['role'] == 'studente') {
 	$url="admin_home.php";
 }
 
- 		echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti $username login effettuato con successo.</b><p>&nbsp;</p><a href='$url'><input id='button' type='submit' alt='area riservata' value='area riservata'/></a><p>&nbsp;</p><a href='index.php'><input id='button' type='submit' alt='home page' value='home page'/></a><p>&nbsp;</p><a href='authentication.php?check=logout'><input id='button' type='submit' alt='logout' value='logout'/></a>";
+ 		echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Complimenti $username login effettuato con successo.</b><p>&nbsp;</p></a>";
 }
 
 else {
@@ -165,7 +168,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 /*registrazione*/
 // attraverso un if controlliamo che il form sia stato inviato
 
-if ( @$_GET['check'] == "registrazione" ) {
+if (  isset($_GET['check']) && $_GET['check'] == "registrazione" ) {
 
 // recuperiamo i dati inviati con il form
 $nome = ucwords($_POST['nome']);
@@ -262,7 +265,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 /*registrazione*/
 // attraverso un if controlliamo che il form sia stato inviato
-	if ( @$_GET['check'] == "logout" ) {
+	if (  isset($_GET['check']) && $_GET['check'] == "logout" ) {
 //Distruggo la vecchia sessione		
 	session_unset();
 	session_destroy();
