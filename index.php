@@ -457,23 +457,22 @@ $get_url = $_SERVER['REQUEST_URI'];
 if (  isset($_GET['check']) && $_GET['check'] == "registrazione" ) {
 
 //recuperiamo i dati inviati con il form
-if (isset($_POST['nome']))
-$nome = ucwords($_POST['nome']);
-if (isset($_POST['cognome']))
-$cognome = ucwords($_POST['cognome']);
-if (isset($_POST['corso']))
-$corso = ucwords($_POST['corso']);
-if (isset($_POST['email']))
+if (isset($_POST['nome'])) {
+$nome = $_POST['nome'];
+$_SESSION['nome_reg'] = $_POST['nome']; }
+if (isset($_POST['cognome'])) {
+$cognome = $_POST['cognome'];
+$_SESSION['cognome_reg'] = $_POST['cognome']; }
+if (isset($_POST['corso'])) {
+$corso = $_POST['corso'];
+$_SESSION['corso_reg'] = ucwords($_POST['corso']); }
+if (isset($_POST['email'])) {
 $email = $_POST['email'];
+$_SESSION['email_reg'] = $_POST['email']; }
 if (isset($_POST['password']))
 $password = $_POST['password'];
 if (isset($_POST['controllo_pass']))
 $controllo_pass = $_POST['controllo_pass'];
-
-$_SESSION['nome_reg'] = ucwords($_POST['nome']);
-$_SESSION['cognome_reg'] = ucwords($_POST['cognome']);
-$_SESSION['corso_reg'] = ucwords($_POST['corso']);
-$_SESSION['email_reg'] = $_POST['email'];
 
 //ora controlliamo che i campi siano stati tutti compilati
 if ( $nome == TRUE && $cognome == TRUE && $corso == TRUE && $password == TRUE && $controllo_pass == TRUE )  {
