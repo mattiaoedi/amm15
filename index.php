@@ -413,12 +413,13 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 //page registrazione gestita in modo di verso perchè il php non è ricorsivo e nella pagina uso altri echo
 if (  isset($_GET['page']) && $_GET['page'] == "registrazione" ) {
+$get_url = $_SERVER['REQUEST_URI'];	
 ?>
 <page class="content">
 	<section>
      <h2>Registrazione</h2>
       <p>
-<form action="<? echo $url ?>&check=registrazione" method="post" name="registrazione">
+<form action="<? echo $get_url ?>&check=registrazione" method="post" name="registrazione">
 
 	<p><b>Nome</b><br />
 	<input type="text" name="nome" value="<? if (isset($_SESSION['nome_reg'])) echo $_SESSION['nome_reg'];?>"/>
