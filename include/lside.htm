@@ -2,7 +2,7 @@
 	<h2>Benvenuto!</h2>
       <p><a href="index.php">Descrizione</a></p>
 <?php
-if ((((isset($_SESSION['login']) && $_SESSION['login']) =="no" )) && (isset($_SESSION['role']) && ($_SESSION['role'] != "studente" && $_SESSION['role'] != "docente" && $_SESSION['role'] != "admin"))) {
+if (isset($_SESSION['login']) && $_SESSION['login'] != "yes" ) {
 ?> 
     <h2>Area riservata</h2>
       <p><a href="index.php?page=login">Login</a></p>
