@@ -14,8 +14,15 @@ session_start();
 // includiamo il file di connessione al database
 include ('files/config.php');
 
-	if ((isset($_SESSION['login']) && ($_SESSION['login'] == "Yes")) ) {
+	if ((isset($_SESSION['login']) && ($_SESSION['login'] == "yes")) ) {
+		if ((isset($_SESSION['role']) && ($_SESSION['role'] == "studente")) ) {
 	header("Location: studente_home.php");
+		} if ((isset($_SESSION['role']) && ($_SESSION['role'] == "docente")) ) {
+			header("Location: docente_home.php");
+		}
+		if ((isset($_SESSION['role']) && ($_SESSION['role'] == "admin")) ) {
+			header("Location: admin_home.php");
+		}
 	}
 ?>
 <!doctype html>
