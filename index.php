@@ -482,7 +482,7 @@ if (@$_GET['page'] == "registrazione" ) {
 <?php
 /*registrazione*/
 //attraverso un if controlliamo che il form sia stato inviato
-if (  isset($_GET['check']) && $_GET['check'] == "registrazione" ) {
+if (  $_GET['check'] == "registrazione" ) {
 
 //recuperiamo i dati inviati con il form
 $nome = ucwords($_POST['nome']);
