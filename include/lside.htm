@@ -4,7 +4,7 @@
 <?php
 if ((((isset($_SESSION['login']) && $_SESSION['login']) =="yes" )) && (isset($_SESSION['role']) && ($_SESSION['role'] == "studente" && $_SESSION['role'] != "docente" && $_SESSION['role'] != "admin"))) {?>
     <h2>Area riservata</h2>
-      <p>Ciao, <? echo @$_SESSION['nome'] ?>  <a href="authentication.php?check=logout"><img src="files/img/logout.png" width="16" height="16" alt="logout" style="vertical-align:middle;"></a></p>
+      <p>Ciao, <? echo $_SESSION['nome'] ?>  <a href="authentication.php?check=logout"><img src="files/img/logout.png" width="16" height="16" alt="logout" style="vertical-align:middle;"></a></p>
       <p><a href="studente_home.php">Home</a></p>
       <p><a href="studente_anagrafica.php">Anagrafica</a></p>
       <p><a href="studente_libretto.php">Libretto</a></p>
@@ -13,7 +13,7 @@ if ((((isset($_SESSION['login']) && $_SESSION['login']) =="yes" )) && (isset($_S
 <?php
 } elseif ((((isset($_SESSION['login']) && $_SESSION['login']) =="yes" )) && (isset($_SESSION['role']) && ($_SESSION['role'] != "studente" && $_SESSION['role'] == "docente" && $_SESSION['role'] != "admin"))) {?>
     <h2>Area riservata</h2>
-      <p>Ciao, <? echo @$_SESSION['nome'] ?>  <a href="authentication.php?check=logout"><img src="files/img/logout.png" width="16" height="16" alt="logout" style="vertical-align:middle;"></a></p>
+      <p>Ciao, <? echo $_SESSION['nome'] ?>  <a href="authentication.php?check=logout"><img src="files/img/logout.png" width="16" height="16" alt="logout" style="vertical-align:middle;"></a></p>
       <p><a href="docente_home.php">Home</a></p>
       <p><a href="docente_anagrafica.php">Anagrafica</a></p>
       <p><a href="docente_appelli.php">Appelli</a></p>
@@ -22,7 +22,7 @@ if ((((isset($_SESSION['login']) && $_SESSION['login']) =="yes" )) && (isset($_S
 <?php
 } elseif ((((isset($_SESSION['login']) && $_SESSION['login']) =="yes" )) && isset($_SESSION['role']) && ($_SESSION['role'] != "studente" && $_SESSION['role'] != "docente" && $_SESSION['role'] == "admin")) { ?>
     <h2>Area riservata</h2>
-      <p>Ciao, <? echo @$_SESSION['nome'] ?>  <a href="authentication.php?check=logout"><img src="files/img/logout.png" width="16" height="16" alt="logout" style="vertical-align:middle;"></a></p>
+      <p>Ciao, <? echo $_SESSION['nome'] ?>  <a href="authentication.php?check=logout"><img src="files/img/logout.png" width="16" height="16" alt="logout" style="vertical-align:middle;"></a></p>
       <p><a href="admin_home.php">Home</a></p>
       <p><a href="admin_studenti.php">Studenti</a></p>
       <p><a href="admin_docenti.php">Docenti</a></p>
