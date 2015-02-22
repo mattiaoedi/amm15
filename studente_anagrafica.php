@@ -184,9 +184,8 @@ elseif (isset($_SESSION['email']))
 $email = $_SESSION['email'];
 else $email='';
 
-$sql = mysql_query("SELECT * FROM studenti WHERE email = '$email' WHERE id = '$id_studente'");
-
-$num = mysql_num_rows($sql);
+$risultati = mysql_query("SELECT * FROM studenti WHERE email = '$email' WHERE id = '$id_studente'");
+$num = mysql_num_rows($risultati);
 
 if ( $num == 0 ) {
 
