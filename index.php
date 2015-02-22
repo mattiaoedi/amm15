@@ -247,6 +247,7 @@ else
     <p>Ricerca nel portale amm15</p>
   </rside>');
 
+	if (isset($_GET['page']))
 	$page = $_GET['page'];	
 
 	echo $pagine[$page] ;
@@ -260,10 +261,8 @@ else
 if ( isset($_GET['check']) && $_GET['check'] == "login" ) {
 
 // recuperiamo i dati inviati con il form
-
-$username = @$_POST['username'];
-
-$password = @$_POST['password'];
+$username = $_POST['username'];
+$password = $_POST['password'];
 
 // ora controlliamo che i campi siano stati tutti compilati
 
