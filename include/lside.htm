@@ -2,12 +2,6 @@
 	<h2>Benvenuto!</h2>
       <p><a href="index.php">Descrizione</a></p>
 <?php
-if (  1 == 1 && ( (((isset($_SESSION['login']) && $_SESSION['login']) == "no" )) && (isset($_SESSION['role']) && ($_SESSION['role'] != "studente" && $_SESSION['role'] != "docente" && $_SESSION['role'] != "admin")) )) {
-?> 
-    <h2>Area riservata</h2>
-      <p><a href="index.php?page=login">Login</a></p>
-      <p><a href="index.php?page=registrazione">Registrazione</a></p>
-<?php
 }
 if ((((isset($_SESSION['login']) && $_SESSION['login']) == "yes" )) && (isset($_SESSION['role']) && ($_SESSION['role'] == "studente" && $_SESSION['role'] != "docente" && $_SESSION['role'] != "admin"))) {?>
     <h2>Area riservata</h2>
@@ -40,6 +34,13 @@ elseif ((((isset($_SESSION['login']) && $_SESSION['login']) == "yes" )) && isset
       <p><a href="admin_elenco.php">Elenco esami</a></p>
       <p><a href="admin_quadro.php">Dip &amp; CdL</a></p>
 <?php
+} else {
+
+?> 
+    <h2>Area riservata</h2>
+      <p><a href="index.php?page=login">Login</a></p>
+      <p><a href="index.php?page=registrazione">Registrazione</a></p>
+      
 }
 ?>
     <p><!-- end .sidebar1 --></p>
