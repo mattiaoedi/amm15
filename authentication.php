@@ -93,8 +93,8 @@ if ( $nums == 1) {
 	$risultati = mysql_query("SELECT dipartimento FROM corsi WHERE id = '$corso' ");
 
 	$id_diparimento = mysql_fetch_array($risultati);
-$risultati = mysql_query("SELECT id, nome FROM corsi WHERE id = '$id_dipartimento' ");
-$diparimento = mysql_fetch_array($risultati);
+	$risultati = mysql_query("SELECT id, nome FROM corsi WHERE id = '$id_dipartimento' ") OR DIE(mysql_error());
+	$diparimento = mysql_fetch_array($risultati);
 
 		@$_SESSION['diparimento'] = $diparimento['id'];
 		@$_SESSION['nome_diparimento'] = $diparimento['nome'];
