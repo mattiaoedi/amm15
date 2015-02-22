@@ -1,16 +1,35 @@
 <?php
 session_start();
-@$_SESSION['id_edit'] = '';
-@$_SESSION['role_edit'] = '';
-@$_SESSION['nome_edit']= '';
-@$_SESSION['cognome_edit'] = '';
-@$_SESSION['via_edit'] = '';
-@$_SESSION['civico_edit'] = '';
-@$_SESSION['citta_edit'] = '';
-@$_SESSION['provincia_edit'] = '';
-@$_SESSION['cap_edit'] = '';
-@$_SESSION['email_edit'] = '';
-@$_SESSION['ricevimento_edit'] = '';
+if (isset($_SESSION['id_edit']) )
+$_SESSION['id_edit'] = '';
+if (isset($_SESSION['role_edit']) )
+$_SESSION['role_edit'] = '';
+if (isset($_SESSION['nome_edit']) )
+$_SESSION['nome_edit']= '';
+if (isset($_SESSION['cognome_edit']) )
+$_SESSION['cognome_edit'] = '';
+if (isset($_SESSION['via_edit']) )
+$_SESSION['via_edit'] = '';
+if (isset($_SESSION['civico_edit']) )
+$_SESSION['civico_edit'] = '';
+if (isset($_SESSION['citta_edit']) )
+$_SESSION['citta_edit'] = '';
+if (isset($_SESSION['provincia_edit']) )
+$_SESSION['provincia_edit'] = '';
+if (isset($_SESSION['cap_edit']) )
+$_SESSION['cap_edit'] = '';
+if (isset($_SESSION['email_edit']) )
+$_SESSION['email_edit'] = '';
+if (isset($_SESSION['ricevimento_edit']) )
+$_SESSION['ricevimento_edit'] = '';
+if (isset($_SESSION['nome_reg']) )
+$_SESSION['nome_reg'] == '';
+if (isset($_SESSION['cognome_reg']) )
+$_SESSION['cognome_reg'] == '';
+if (isset($_SESSION['corso_reg']) )
+$_SESSION['corso_reg'] == '';
+if (isset($_SESSION['email_reg']) )
+$_SESSION['email_reg'] == '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
@@ -34,15 +53,14 @@ include ('files/config.php');
 <?php include 'include/lside.htm'; ?>
 <? 
 //controllo studente
-if (@$_SESSION['login'] == "Yes" && @$_SESSION['role'] == 'studente' ) {
-?>
+if ((isset($_SESSION['login']) && $_SESSION['login'] == "yes") && (isset($_SESSION['role']) && $_SESSION['role'] == "studente") ) { ?>
   <page class="content">
     <section>
      <h2 class="icona" id="libretto-m">Libretto online</h2>
       <p>&nbsp;</p>
-      <p><strong>Nome: </strong> <? echo @$_SESSION['nome'] ?></p>
-      <p><strong>Cognome: </strong> <? echo @$_SESSION['cognome'] ?></p>
-      <p><strong>Matricola: </strong> <? echo @$_SESSION['id'] ?></p>
+      <p><strong>Nome: </strong> <? if (isset($_SESSION['nome']) ) echo $_SESSION['nome'] ?></p>
+      <p><strong>Cognome: </strong> <? if (isset($_SESSION['cognome']) ) echo $_SESSION['cognome'] ?></p>
+      <p><strong>Matricola: </strong> <? if (isset($_SESSION['id']) ) echo $_SESSION['id'] ?></p>
           <hr width="100%" size="2" color="1c345a">
             <?
         $esami = mysql_query("SELECT * FROM esami"); 
@@ -116,9 +134,8 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
     </ul>
   </rside>
 <?
-} elseif (@$_SESSION['login'] != "Yes") {
+} elseif (isset($_SESSION['login']) && $_SESSION['login'] != "yes") {
 
-	
 echo "<page class='content'><section><center><img src='files/img/no.png' width='32' height='32' alt='accesso negato'style='vertical-align:middle;' /><b>Accesso non autorizzato.</b><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a><p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='registrati' value='registrati'/></a></center></section></page>  <br>
 	<rside>
     <h2>Informazioni</h2>
