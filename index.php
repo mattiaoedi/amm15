@@ -82,6 +82,8 @@ include ('files/config.php');
 else
 {
     $pagine = array( 	
+	'login'=>'',
+	'registrazione'=>'',
 	'offerta'=>'<page class="content">
     <section>
      <h2>Offerta formativa</h2>
@@ -229,7 +231,7 @@ else
 if ( isset($_GET['page']) && $_GET['page'] == "login" ) {
 $get_url = $_SERVER['REQUEST_URI'];	
 ?>
-	'login'=>'<page class="content">
+	<page class="content">
     <section>
      <h2>Login</h2>
       <p>
