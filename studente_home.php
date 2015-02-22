@@ -34,7 +34,7 @@ include ('files/config.php');
 <?php include 'include/lside.htm'; ?>
 <? 
 //controllo studente
-if (@$_SESSION['login'] == "Yes" && @$_SESSION['role'] == 'studente' ) {
+if (@$_SESSION['login'] == "yes" && @$_SESSION['role'] == "studente" ) {
 ?>
 <page class="content">
     <section>
