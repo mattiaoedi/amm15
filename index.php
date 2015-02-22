@@ -219,7 +219,8 @@ else
 
 	if (isset($_GET['page']))
 	$page = $_GET['page'];	
-
+	
+	if (isset($pagine))
 	echo $pagine[$page] ;
 	
 	}
