@@ -565,6 +565,19 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 
 ?>
 
+<?php
+/*logout*/
+// attraverso un if controlliamo che il form sia stato inviato
+	if ( isset($_GET['check']) && $_GET['check'] == "logout" ) {
+//Distruggo la vecchia sessione		
+	$_SESSION['login'] = "no";
+	session_unset();
+	session_destroy();
+//Apro una nuova sessione	
+	session_start();
+	echo "<img src='files/img/ok.png' width='32' height='32' alt='ok' style='vertical-align:middle;' /><b>Logout effettuato con successo.</b><p>&nbsp;</p><a href='index.php'><input id='button' type='submit' alt='home page' value='home page'/></a><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a>";
+}
+?>
 </p>
     </section>
   <!-- end .content --></page>
