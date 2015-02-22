@@ -48,7 +48,7 @@ $_SESSION['email_reg'] == '';
 include ('files/config.php');
 
 if ( (isset($_GET['edit']) && ($_GET['edit'] == "indirizzo")) || (isset($_GET['edit']) && ($_GET['edit'] == "contatti")) || (isset($_GET['edit']) && ($_GET['edit'] == "password"))) {
-	header( "refresh:1;url={$_SERVER['PHP_SELF']}" );
+	header( "refresh:2;url={$_SERVER['PHP_SELF']}" );
 	}
 	
     $url = basename($_SERVER['PHP_SELF']);
