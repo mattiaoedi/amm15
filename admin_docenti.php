@@ -122,7 +122,7 @@ $_GET['show'] = "docente";
 }
 
 if ( isset($_GET['show']) && $_GET['show'] == "docente" ) {
-	
+	if ( isset($_POST['docente'])) 
 	$id_docente = $_POST["docente"];
 	$_SESSION['id_docente'] = $id_docente;
 	$risultati = mysql_query("SELECT * FROM docenti WHERE id = '$id_docente' ORDER BY cognome");
