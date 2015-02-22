@@ -11,6 +11,10 @@ $_SESSION['provincia_edit'] = '';
 $_SESSION['cap_edit'] = '';
 $_SESSION['email_edit'] = '';
 $_SESSION['ricevimento_edit'] = '';
+$_SESSION['nome_reg'] == '';
+$_SESSION['cognome_reg'] == '';
+$_SESSION['corso_reg'] == '';
+$_SESSION['email_reg'] == '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
@@ -39,7 +43,7 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] == "yes") && (isset($_SESSI
 <page class="content">
     <section>
       <h2 class="icona" id="areap">Area personale</h2>
-      <p>Benvenuto, <? echo @$_SESSION['nome'] ?>.</p>
+      <p>Benvenuto, <? if (isset($_SESSION['nome']) ) echo $_SESSION['nome'] ?>.</p>
       <p>Benvenuto nella tua area riservata!</p>
 	  <div class="box_link">
       <p><center><li><a href="studente_anagrafica.php" id="anagrafica">Anagrafica</a></li>
@@ -56,8 +60,7 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] == "yes") && (isset($_SESSI
       <li><strong>Iscrizione</strong> per iscriversi ad un appello di esame.</li>
   </rside>
   <?
-} elseif (@$_SESSION['login'] != "yes") {
-
+} elseif (isset($_SESSION['login']) && $_SESSION['login'] != "yes") {
 	
 echo "<page class='content'><section><center><img src='files/img/no.png' width='32' height='32' alt='accesso negato'style='vertical-align:middle;' /><b>Accesso non autorizzato.</b><p>&nbsp;</p><a href='index.php?page=login'><input id='button' type='submit' alt='login' value='login'/></a><p>&nbsp;</p><a href='index.php?page=registrazione'><input id='button' type='submit' alt='registrati' value='registrati'/></a></center></section></page>
 	<rside>
