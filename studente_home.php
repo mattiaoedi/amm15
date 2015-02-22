@@ -1,19 +1,48 @@
 <?php
 session_start();
+if (isset($_SESSION['studente']) )
+$_SESSION['studente'] = '';
+if (isset($_SESSION['docente']) )
+$_SESSION['docente'] = '';
+if (isset($_SESSION['id_appello']) )
+$_SESSION['id_appello'] = '';
+if (isset($_SESSION['id_esame']) )
+$_SESSION['id_esame'] = '';
+if (isset($_SESSION['id_dipartimento']) )
+$_SESSION['id_dipartimento'] = '';
+if (isset($_SESSION['id_corso']) )
+$_SESSION['id_corso'] = '';
+if (isset($_SESSION['id_insegnamento']) )
+$_SESSION['id_insegnamento'] = '';
+if (isset($_SESSION['id_edit']) )
 $_SESSION['id_edit'] = '';
+if (isset($_SESSION['role_edit']) )
 $_SESSION['role_edit'] = '';
+if (isset($_SESSION['nome_edit']) )
 $_SESSION['nome_edit']= '';
+if (isset($_SESSION['cognome_edit']) )
 $_SESSION['cognome_edit'] = '';
+if (isset($_SESSION['via_edit']) )
 $_SESSION['via_edit'] = '';
+if (isset($_SESSION['civico_edit']) )
 $_SESSION['civico_edit'] = '';
+if (isset($_SESSION['citta_edit']) )
 $_SESSION['citta_edit'] = '';
+if (isset($_SESSION['provincia_edit']) )
 $_SESSION['provincia_edit'] = '';
+if (isset($_SESSION['cap_edit']) )
 $_SESSION['cap_edit'] = '';
+if (isset($_SESSION['email_edit']) )
 $_SESSION['email_edit'] = '';
+if (isset($_SESSION['ricevimento_edit']) )
 $_SESSION['ricevimento_edit'] = '';
+if (isset($_SESSION['nome_reg']) )
 $_SESSION['nome_reg'] == '';
+if (isset($_SESSION['cognome_reg']) )
 $_SESSION['cognome_reg'] == '';
+if (isset($_SESSION['corso_reg']) )
 $_SESSION['corso_reg'] == '';
+if (isset($_SESSION['email_reg']) )
 $_SESSION['email_reg'] == '';
 // includiamo il file di connessione al database
 include ('files/config.php');
