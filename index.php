@@ -1,16 +1,16 @@
 <?php
 session_start();
-@$_SESSION['id_edit'] = '';
-@$_SESSION['role_edit'] = '';
-@$_SESSION['nome_edit']= '';
-@$_SESSION['cognome_edit'] = '';
-@$_SESSION['via_edit'] = '';
-@$_SESSION['civico_edit'] = '';
-@$_SESSION['citta_edit'] = '';
-@$_SESSION['provincia_edit'] = '';
-@$_SESSION['cap_edit'] = '';
-@$_SESSION['email_edit'] = '';
-@$_SESSION['ricevimento_edit'] = '';
+$_SESSION['id_edit'] = '';
+$_SESSION['role_edit'] = '';
+$_SESSION['nome_edit']= '';
+$_SESSION['cognome_edit'] = '';
+$_SESSION['via_edit'] = '';
+$_SESSION['civico_edit'] = '';
+$_SESSION['citta_edit'] = '';
+$_SESSION['provincia_edit'] = '';
+$_SESSION['cap_edit'] = '';
+$_SESSION['email_edit'] = '';
+$_SESSION['ricevimento_edit'] = '';
 // includiamo il file di connessione al database
 include ('files/config.php');
 
