@@ -34,7 +34,7 @@ include ('files/config.php');
 <?php include 'include/lside.htm'; ?>
 <? 
 //controllo admin
-if ($_SESSION['login'] == "Yes" && $_SESSION['role'] == 'admin') {
+if ($_SESSION['login'] == "yes" && $_SESSION['role'] == "admin") {
 ?>
 <page class="content">
     <section>
