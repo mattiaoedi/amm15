@@ -14,9 +14,6 @@ session_start();
 // includiamo il file di connessione al database
 include ('files/config.php');
 
-if ( (isset($_GET['check']) && ($_GET['check'] == "logout"))) {
-	header( "refresh:1;url=index.php" );
-	}	
 	if ((isset($_SESSION['login']) && ($_SESSION['login'] == "Yes")) ) {
 	header("Location: studente_home.php");
 	}	
