@@ -14,9 +14,9 @@ session_start();
 // includiamo il file di connessione al database
 include ('files/config.php');
 
-	/*if ((isset($_SESSION['login']) && ($_SESSION['login'] == "Yes")) ) {
+	if ((isset($_SESSION['login']) && ($_SESSION['login'] == "Yes")) ) {
 	header("Location: studente_home.php");
-	}*/	
+	}
 ?>
 <!doctype html>
 <html>
@@ -96,7 +96,6 @@ if ( $nums == 1) {
 
 	if ( $num == 1) {
 	$id_dipartimento = $diparimento['id'];
-	
 	$risultati = mysql_query("SELECT id, nome FROM corsi WHERE id = '$id_dipartimento' ") OR DIE(mysql_error());
 	$diparimento = mysql_fetch_array($risultati);
 
@@ -109,7 +108,7 @@ if ( $nums == 1) {
 } 
 else {
 
-		@$_SESSION['login'] = "Yes";
+		@$_SESSION['login'] = "yes";
 		@$_SESSION['id'] = $docente['id'];
 		@$_SESSION['role'] = $docente['role'];
 		@$_SESSION['nome'] = $docente['nome'];
@@ -263,6 +262,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 // attraverso un if controlliamo che il form sia stato inviato
 	if (  isset($_GET['check']) && $_GET['check'] == "logout" ) {
 //Distruggo la vecchia sessione		
+	$_SESSION['login'] = "no";
 	session_unset();
 	session_destroy();
 //Apro una nuova sessione	
