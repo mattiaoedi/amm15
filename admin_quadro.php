@@ -111,13 +111,13 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] == "yes") && (isset($_SESSI
         <?php
 //attraverso un while controlloriamo che il $id abbiamo un valore id valido
 
-			$corso = mysql_query("SELECT id FROM dipartimenti ORDER BY id") OR DIE(mysql_error()); 
+			$dipartimento = mysql_query("SELECT id FROM dipartimenti ORDER BY id") OR DIE(mysql_error()); 
 			$num = mysql_num_rows($corso);
 			
 			$i=0;
             while ($i < $num) {
 			
-			if ( $id_dipartimento == (mysql_result($corso,$i,'id')) ) {
+			if ( $id_dipartimento == (mysql_result($dipartimento,$i,'id')) ) {
 				
 				$id_dipartimento = $_SESSION['id_dipartimento'];
 				
