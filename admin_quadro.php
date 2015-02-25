@@ -87,7 +87,7 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] == "yes") && (isset($_SESSI
                     <option value="Seleziona un dipartimento" selected>Seleziona un dipartimento</option>
             <?php
                         
-            $dipartimento = mysql_query("SELECT * FROM dipartimenti ORDER BY id");
+            $dipartimento = mysql_query("SELECT * FROM dipartimenti ORDER BY id") OR DIE(mysql_error());
             $num = mysql_num_rows($dipartimento);
 			
 			$i=0;
@@ -111,15 +111,15 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] == "yes") && (isset($_SESSI
         <?php
 //attraverso un while controlloriamo che il $id abbiamo un valore id valido
 
-			$corso = mysql_query("SELECT id FROM corsi ORDER BY id"); 
+			$corso = mysql_query("SELECT id FROM dipartimenti ORDER BY id") OR DIE(mysql_error()); 
 			$num = mysql_num_rows($corso);
 			
 			$i=0;
             while ($i < $num) {
 			
-			if ( $id_corso == (mysql_result($corso,$i,'id')) ) {
+			if ( $id_dipartimento == (mysql_result($corso,$i,'id')) ) {
 				
-				$id_corso = @$_SESSION['id_corso'];
+				$id_dipartimento = $_SESSION['id_dipartimento'];
 				
 				}
 				
@@ -187,7 +187,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
                     <option value="Seleziona un corso" selected>Seleziona un corso</option>
             <?php
                         
-            $corso = mysql_query("SELECT * FROM corsi ORDER BY id");
+            $corso = mysql_query("SELECT * FROM corsi ORDER BY id") OR DIE(mysql_error());
             $num = mysql_num_rows($corso);
 			
 			$i=0;
@@ -211,7 +211,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 //attraverso un while controlloriamo che il $id abbiamo un valore id valido
 
-			$corso = mysql_query("SELECT id FROM corsi ORDER BY id"); 
+			$corso = mysql_query("SELECT id FROM corsi ORDER BY id") OR DIE(mysql_error()); 
 			$num = mysql_num_rows($corso);
 			
 			$i=0;
@@ -219,7 +219,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 			
 			if ( $id_corso == (mysql_result($corso,$i,'id')) ) {
 				
-				$id_corso = @$_SESSION['id_corso'];
+				$id_corso = $_SESSION['id_corso'];
 				
 				}
 				
@@ -235,7 +235,7 @@ if ( isset($_GET['show']) && $_GET['show'] == "corso" ) {
 $get_url = $_SERVER['REQUEST_URI'];	
 $id_corso = $_POST['corso'];
 $_SESSION['id_corso'] = $id_corso;
-$risultati = mysql_query("SELECT * FROM corsi WHERE id = '$id_corso' ORDER BY id");
+$risultati = mysql_query("SELECT * FROM corsi WHERE id = '$id_corso' ORDER BY id") OR DIE(mysql_error());
 $corso = mysql_fetch_array($risultati);
 $echo_corso_nome = $corso["nome"];
 ?>   
@@ -245,7 +245,7 @@ $echo_corso_nome = $corso["nome"];
                     <option value="" selected>Seleziona un dipartimento</option>
             <?php
                         
-            $dipartimento = mysql_query("SELECT * FROM dipartimenti ORDER BY id");
+            $dipartimento = mysql_query("SELECT * FROM dipartimenti ORDER BY id") OR DIE(mysql_error());
             $num = mysql_num_rows($dipartimento );
 			
 			$i=0;
@@ -254,7 +254,7 @@ $echo_corso_nome = $corso["nome"];
 			$id_dipartimento = mysql_result($dipartimento ,$i,'id');
             $nome = mysql_result($dipartimento ,$i,'nome');
 			
-			$corso = mysql_query("SELECT dipartimento FROM corsi ORDER BY id");
+			$corso = mysql_query("SELECT dipartimento FROM corsi ORDER BY id") OR DIE(mysql_error());
 			$dipartimento_corso = mysql_result($corso,$id_corso-1,'dipartimento');
 			
 			if ( $id_dipartimento == $dipartimento_corso ) {
@@ -323,7 +323,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
                     <option value="Seleziona un insegnamento" selected>Seleziona un insegnamento</option>
             <?php
                         
-            $insegnamento = mysql_query("SELECT * FROM insegnamenti ORDER BY id");
+            $insegnamento = mysql_query("SELECT * FROM insegnamenti ORDER BY id") OR DIE(mysql_error());
             $num = mysql_num_rows($insegnamento);
 			
 			$i=0;
@@ -347,7 +347,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
 <?php
 //attraverso un while controlloriamo che il $id abbiamo un valore id valido
 
-			$insegnamentio = mysql_query("SELECT id FROM insegnamenti ORDER BY id"); 
+			$insegnamentio = mysql_query("SELECT id FROM insegnamenti ORDER BY id") OR DIE(mysql_error()); 
 			$num = mysql_num_rows($insegnamento);
 			
 			$i=0;
@@ -371,7 +371,7 @@ if ( isset($_GET['show']) && $_GET['show'] == "insegnamento" ) {
 $get_url = $_SERVER['REQUEST_URI'];	
 $id_insegnamento = $_POST['insegnamento'];
 $_SESSION['id_insegnamento'] = $id_insegnamento;
-$risultati = mysql_query("SELECT * FROM insegnamenti WHERE id = '$id_insegnamento' ORDER BY id");
+$risultati = mysql_query("SELECT * FROM insegnamenti WHERE id = '$id_insegnamento' ORDER BY id") OR DIE(mysql_error());
 $insegnamento = mysql_fetch_array($risultati);
 $echo_insegnamento_nome = $insegnamento["nome"];
 $echo_insegnamento_cfu = $insegnamento["crediti"];
@@ -391,7 +391,7 @@ $echo_insegnamento_cfu = $insegnamento["crediti"];
 			$id_corso = mysql_result($corso ,$i,'id');
             $nome = mysql_result($corso ,$i,'nome');
 			
-			$insegnamento = mysql_query("SELECT corso FROM insegnamenti ORDER BY id");
+			$insegnamento = mysql_query("SELECT corso FROM insegnamenti ORDER BY id") OR DIE(mysql_error());
 			$corso_insegnamento = mysql_result($insegnamento,$id_insegnamento-1,'corso');
 			
 			if ( $id_corso == $corso_insegnamento ) {
@@ -417,7 +417,7 @@ $echo_insegnamento_cfu = $insegnamento["crediti"];
                     <option value="" selected>Seleziona un docente</option>
             <?php
                         
-            $docente = mysql_query("SELECT * FROM docenti ORDER BY cognome");
+            $docente = mysql_query("SELECT * FROM docenti ORDER BY cognome") OR DIE(mysql_error());
             $num = mysql_num_rows($docente );
 			
 			$i=0;
@@ -427,7 +427,7 @@ $echo_insegnamento_cfu = $insegnamento["crediti"];
             $nome = mysql_result($docente ,$i,'nome');
 			$cognome = mysql_result($docente ,$i,'cognome');
 			
-			$insegnamento = mysql_query("SELECT docente FROM insegnamenti ORDER BY id");
+			$insegnamento = mysql_query("SELECT docente FROM insegnamenti ORDER BY id") OR DIE(mysql_error());
 			$docente_insegnamento = mysql_result($insegnamento,$id_insegnamento-1,'docente');
 			
 			if ( $id_docente == $docente_insegnamento ) {
@@ -543,7 +543,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
                     <option value="Seleziona un dipartimento" selected>Seleziona un dipartimento</option>
             <?php
                         
-            $dipartimento = mysql_query("SELECT * FROM dipartimenti ORDER BY id");
+            $dipartimento = mysql_query("SELECT * FROM dipartimenti ORDER BY id") OR DIE(mysql_error());
             $num = mysql_num_rows($dipartimento);
 			
 			$i=0;
@@ -609,7 +609,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
                     <option value="Seleziona un dipartimento" selected>Seleziona un corso</option>
             <?php
                         
-            $corso = mysql_query("SELECT * FROM corsi ORDER BY id");
+            $corso = mysql_query("SELECT * FROM corsi ORDER BY id") OR DIE(mysql_error());
             $num = mysql_num_rows($corso );
 			
 			$i=0;
@@ -633,7 +633,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
                     <option value="Seleziona un dipartimento" selected>Seleziona un docente</option>
             <?php
                         
-            $docente = mysql_query("SELECT * FROM docenti ORDER BY cognome");
+            $docente = mysql_query("SELECT * FROM docenti ORDER BY cognome") OR DIE(mysql_error());
             $num = mysql_num_rows($corso );
 			
 			$i=0;
@@ -643,7 +643,7 @@ echo "<img src='files/img/no.png' width='32' height='32' alt='no' style='vertica
             $nome = mysql_result($docente ,$i,'nome');
 			$cognome = mysql_result($docente ,$i,'cognome');
 			
-            $corso = mysql_query("SELECT * FROM corsi WHERE docente = 'id_docente' ORDER BY id");
+            $corso = mysql_query("SELECT * FROM corsi WHERE docente = 'id_docente' ORDER BY id") OR DIE(mysql_error());
             $num = mysql_num_rows($corso );
 			
 			if ( $num == 1) {
